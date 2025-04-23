@@ -1,6 +1,5 @@
--- Database Schema for Trip Sharing System
-
 -- User Table
+
 CREATE TABLE User (
     Student_ID VARCHAR(20) PRIMARY KEY,
     Name VARCHAR(100) NOT NULL,
@@ -12,6 +11,7 @@ CREATE TABLE User (
 );
 
 -- User Phone Numbers
+
 CREATE TABLE User_Phone_Numbers (
     Student_ID VARCHAR(20),
     Phone_Number VARCHAR(15),
@@ -20,6 +20,7 @@ CREATE TABLE User_Phone_Numbers (
 );
 
 -- Private Vehicle
+
 CREATE TABLE Private_Vehicle (
     Vehicle_Number VARCHAR(20) PRIMARY KEY,
     Model_Name VARCHAR(50),
@@ -29,12 +30,14 @@ CREATE TABLE Private_Vehicle (
 );
 
 -- Admin
+
 CREATE TABLE Admin (
     Admin_Key VARCHAR(30) PRIMARY KEY,
     Password VARCHAR(100) NOT NULL
 );
 
 -- Trips
+
 CREATE TABLE Trips (
     Trip_ID VARCHAR(30) PRIMARY KEY,
     Student_ID VARCHAR(20),
@@ -50,6 +53,7 @@ CREATE TABLE Trips (
 );
 
 -- Trip Joiners
+
 CREATE TABLE Trip_Joiners (
     Student_ID VARCHAR(20),
     Trip_ID VARCHAR(30),
@@ -59,6 +63,7 @@ CREATE TABLE Trip_Joiners (
 );
 
 -- Trip Member Ratings
+
 CREATE TABLE Trip_Member_Ratings (
     Rater_ID VARCHAR(20),
     Rated_ID VARCHAR(20),
@@ -72,6 +77,7 @@ CREATE TABLE Trip_Member_Ratings (
 );
 
 -- Optional: View for Average Ratings
+
 CREATE VIEW User_Average_Ratings AS
 SELECT 
     Rated_ID AS Student_ID,
