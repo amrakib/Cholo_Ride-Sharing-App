@@ -4,7 +4,7 @@ CREATE TABLE User (
     Student_ID VARCHAR(20) PRIMARY KEY,
     Name VARCHAR(100) NOT NULL,
     Gsuite_Email VARCHAR(100) UNIQUE NOT NULL,
-    Scanned_ID TEXT,
+    Scanned_ID VARCHAR(255),
     Semester VARCHAR(20),
     Department VARCHAR(50),
     Thana VARCHAR(50)
