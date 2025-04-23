@@ -15,7 +15,9 @@ This project is a **Ride Sharing Management System** built as part of our CSE370
 ## ✔️ Tech Stack
 
 -Database: MySQL
+
 -Backend: PHP
+
 -Frontend: HTML,CSS
 
 
