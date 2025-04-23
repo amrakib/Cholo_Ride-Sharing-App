@@ -45,7 +45,7 @@ CREATE TABLE Trips (
     Capacity INT,
     Time TIME,
     Date DATE,
-    Fare DECIMAL(10,2),
+    Fare DECIMAL(4,2),
     Meet_up_location VARCHAR(100),
     Recurring_Trip BOOLEAN,
     Mode_of_Commute VARCHAR(30),
