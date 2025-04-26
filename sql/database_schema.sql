@@ -9,7 +9,6 @@ CREATE TABLE User (
     Department VARCHAR(50),
     Thana VARCHAR(50)
 );
--- fjkefjei
 
 -- User Phone Numbers
 
