@@ -1,8 +1,4 @@
 -- User Table
-Create DATABASE database_schema;
-
-USE database_schema;
-
 
 CREATE TABLE User (
     Student_ID VARCHAR(20) PRIMARY KEY,
