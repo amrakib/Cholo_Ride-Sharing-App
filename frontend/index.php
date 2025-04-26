@@ -17,7 +17,7 @@ include 'connection.php';
       <!-- <img src="login vector.svg" alt="login vector" / > -->
       <h1>Log In</h1>
       <!-- <p>Some tagline could be added here</p> -->
-      <form action="/submit" method="post">
+      <form action="login.php" method="post">
         <div class="input-group">
           <label for="email">Email:</label>
           <input
@@ -38,8 +38,9 @@ include 'connection.php';
             required
           />
         </div>
+        <input type="submit" name="submit" value="Log In" />
 
-        <button type="submit">Log In</button>
+        <!-- <button type="submit" name="submit">Log In</button> -->
         <div id="extra-links">
           <a href="">Forget Password?</a>
           <a href="Create Account Page.html" target="_blank">Create Account</a>
