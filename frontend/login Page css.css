@@ -51,7 +51,7 @@ input:focus {
   background-color: #e6e6e6;
   box-shadow: 0 0 5px #81ecec;
 }
-button {
+.submit_button {
   background-color: #4b2adb;
   color: #f2f2f2;
   padding: 10px 30px;
@@ -63,7 +63,7 @@ button {
   margin: 0 auto 20px auto;
   box-shadow: #307eeb 0px 0px 3px;
 }
-button:hover {
+.submit_button:hover {
   background-color: #307eeb;
 }
 .footer {

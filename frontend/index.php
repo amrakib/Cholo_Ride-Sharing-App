@@ -38,7 +38,7 @@ include 'connection.php';
             required
           />
         </div>
-        <input type="submit" name="submit" value="Log In" />
+        <input class="submit_button" type="submit" name="submit" value="Log In" />
 
         <!-- <button type="submit" name="submit">Log In</button> -->
         <div id="extra-links">
