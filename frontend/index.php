@@ -24,7 +24,7 @@ include 'connection.php';
             type="email"
             id="email"
             name="email"
-            placeholder="johndoe@example.com"
+            placeholder="abc@g.bracu.ac.bd"
             required
           />
         </div>
