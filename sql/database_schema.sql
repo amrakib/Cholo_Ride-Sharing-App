@@ -7,7 +7,8 @@ CREATE TABLE User (
     Scanned_ID VARCHAR(255),
     Semester VARCHAR(20),
     Department VARCHAR(50),
-    Thana VARCHAR(50)
+    Thana VARCHAR(50),
+    Password VARCHAR(100) NOT NULL
 );
 
 -- User Phone Numbers
