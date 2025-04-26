@@ -10,6 +10,10 @@ CREATE TABLE User (
     Thana VARCHAR(50),
     Password VARCHAR(100) NOT NULL
 );
+-- test case insetion
+INSERT INTO User (Student_ID, Name, Gsuite_Email, Password) VALUES
+('23101125', 'Tawfiq', 'tawfiq@gmail.com', '123tawfiq'),
+('23101126', 'Razeen','razeen@gmail.com','123razeen');
 
 -- User Phone Numbers
 
