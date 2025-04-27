@@ -30,12 +30,11 @@
     <div class="container-fluid  mt-5 form-container p-4 ">
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col-4">
-    <img src="svg_for_posting_trip.svg" alt="posting trip svg" height="200px"/>
     </div>
     <div class="col-8 ">
-      <h1 class=" mt-3 fw-bold">Posting a Ride</h1>
+      <h1 class=" mt-3 fw-bold">Join a Trip</h1>
       <p class="mb-4 ">
-        Please fill in this successfully posting a Ride.
+        Search Your preferrable Trips
       </p>
       </div>
       </div>
