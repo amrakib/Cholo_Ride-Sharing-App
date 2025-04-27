@@ -31,9 +31,9 @@
       <p class="mb-4 text-center">
         Please fill in this form to register for our service.
       </p>
-      <form>
-        <!-- Name input fields -->
 
+      <form>        
+        <!-- Name input fields -->
         <div class="form-floating mb-3">
           <input
             type="text"

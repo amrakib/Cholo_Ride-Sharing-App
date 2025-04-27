@@ -1,5 +1,6 @@
--- User Table
-
+-- ======================
+-- User Table (UPDATED AGAIN)
+-- ======================
 CREATE TABLE User (
     Student_ID VARCHAR(20) PRIMARY KEY,
     Name VARCHAR(100) NOT NULL,
@@ -8,24 +9,23 @@ CREATE TABLE User (
     Semester VARCHAR(20),
     Department VARCHAR(50),
     Thana VARCHAR(50),
-    Password VARCHAR(100) NOT NULL
-);
--- test case insetion
-INSERT INTO User (Student_ID, Name, Gsuite_Email, Password) VALUES
-('23101125', 'Tawfiq', 'tawfiq@gmail.com', '123tawfiq'),
-('23101126', 'Razeen','razeen@gmail.com','123razeen');
-
--- User Phone Numbers
-
-CREATE TABLE User_Phone_Numbers (
-    Student_ID VARCHAR(20),
-    Phone_Number VARCHAR(15),
-    PRIMARY KEY (Student_ID, Phone_Number),
-    FOREIGN KEY (Student_ID) REFERENCES User(Student_ID) ON DELETE CASCADE
+    Phone_Number VARCHAR(15), -- updated
+    Password VARCHAR(100) NOT NULL,
+    Address VARCHAR(255),     -- added Address
+    Gender VARCHAR(10)       -- added Gender
 );
 
+-- ======================
+-- Test Case Insertion (UPDATED AGAIN)
+-- ======================
+INSERT INTO User (Student_ID, Name, Gsuite_Email, Password, Address, Gender, Phone_Number) VALUES
+('23101125', 'Tawfiq', 'tawfiq@gmail.com', '123tawfiq', 'Mirpur, Dhaka', 'Male', '01712345678'),
+('23101126', 'Razeen', 'razeen@gmail.com', '123razeen', 'Banani, Dhaka', 'Male', '01812345679');
+
+
+-- ======================
 -- Private Vehicle
-
+-- ======================
 CREATE TABLE Private_Vehicle (
     Vehicle_Number VARCHAR(20) PRIMARY KEY,
     Model_Name VARCHAR(50),
@@ -34,15 +34,17 @@ CREATE TABLE Private_Vehicle (
     FOREIGN KEY (Owner_ID) REFERENCES User(Student_ID) ON DELETE SET NULL
 );
 
+-- ======================
 -- Admin
-
+-- ======================
 CREATE TABLE Admin (
     Admin_Key VARCHAR(30) PRIMARY KEY,
     Password VARCHAR(100) NOT NULL
 );
 
+-- ======================
 -- Trips
-
+-- ======================
 CREATE TABLE Trips (
     Trip_ID VARCHAR(30) PRIMARY KEY,
     Student_ID VARCHAR(20),
@@ -57,8 +59,9 @@ CREATE TABLE Trips (
     FOREIGN KEY (Student_ID) REFERENCES User(Student_ID) ON DELETE SET NULL
 );
 
+-- ======================
 -- Trip Joiners
-
+-- ======================
 CREATE TABLE Trip_Joiners (
     Student_ID VARCHAR(20),
     Trip_ID VARCHAR(30),
@@ -67,8 +70,9 @@ CREATE TABLE Trip_Joiners (
     FOREIGN KEY (Trip_ID) REFERENCES Trips(Trip_ID) ON DELETE CASCADE
 );
 
+-- ======================
 -- Trip Member Ratings
-
+-- ======================
 CREATE TABLE Trip_Member_Ratings (
     Rater_ID VARCHAR(20),
     Rated_ID VARCHAR(20),
@@ -81,8 +85,9 @@ CREATE TABLE Trip_Member_Ratings (
     FOREIGN KEY (Trip_ID) REFERENCES Trips(Trip_ID) ON DELETE CASCADE
 );
 
--- Optional: View for Average Ratings
-
+-- ======================
+-- View for Average Ratings
+-- ======================
 CREATE VIEW User_Average_Ratings AS
 SELECT 
     Rated_ID AS Student_ID,
