@@ -2,7 +2,10 @@
 
 <?php
 include '../frontend/connection.php';
-$location_value_fetch = "SELECT area FROM area_locations";
+$location_value_fetch = "SELECT * FROM Locations";
+
+$all_locs = $conn->query($location_value_fetch);
+
 ?>
 
 <html>
@@ -50,9 +53,16 @@ $location_value_fetch = "SELECT area FROM area_locations";
         <div class=" field ">
           <select class="form-select text-center selection-field" aria-label="Default select example" name="from_location">
             <option selected>Where From</option>
-            <option value="1">Mohammadpur</option>
-            <option value="2">Dhanmondi</option>
-            <option value="3">Banasree</option>
+            <?php
+            if ($all_locs->num_rows > 0) {
+                while ($row2 = $all_locs->fetch_assoc()) {
+                    $temp= "<option value=\"".$row2["area_locations"]."\"".">".$row2["area_locations"]."</option>";
+                    echo $temp;
+                }       
+            } else {
+            echo "<option value=\""."NoData"."\"".">"."No data"."</option>";
+            }
+            ?>
           </select>
         </div>
 
@@ -60,9 +70,18 @@ $location_value_fetch = "SELECT area FROM area_locations";
         <div class=" field mt-3 ">
           <select class="form-select text-center selection-field" aria-label="Default select example" name="towhere">
             <option selected>Where To</option>
-            <option value="1">Mohammadpur</option>
-            <option value="2">Dhanmondi</option>
-            <option value="3">Banasree</option>
+            <?php
+            $all_locs = $conn->query($location_value_fetch);
+            if ($all_locs->num_rows > 0) {
+                while ($row2 = $all_locs->fetch_assoc()) {
+                    $temp= "<option value=\"".$row2["area_locations"]."\"".">".$row2["area_locations"]."</option>";
+                    echo $temp;
+                }       
+            
+            } else {
+                echo "<option value=\""."NoData"."\"".">"."No data"."</option>";
+            }
+            ?>
           </select>
         </div>
 
