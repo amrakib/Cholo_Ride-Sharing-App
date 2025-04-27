@@ -1,5 +1,13 @@
 <!DOCTYPE html>
+
+<?php
+include '../frontend/connection.php';
+$location_value_fetch = "SELECT area FROM area_locations";
+?>
+
 <html>
+
+
   <head>
     <title>Cholo-Posting Trip</title>
     <link
@@ -25,19 +33,17 @@
 
     <link rel="stylesheet" href="css/join_trip.css" />
   </head>
+
+
   <body>
-    
     <div class="container-fluid  mt-5 form-container p-4 ">
       <div class="text-center mb-3">
        
-    
       <h1 class=" mt-3 fw-bold">Join a Trip</h1>
       <p class="mb-4 ">
         Search Your preferrable Trips
       </p>
       </div>
-      
-      
       <form method="post" action="">
         <!-- From Where -->
         
@@ -62,7 +68,7 @@
 
         <!-- Time -->
         <div class=" field text-center mt-3 ">
-          <label for="starting time">Starting Time</label>
+          <label for="starting time">Trip Starting Time</label>
           <input
             type="datetime-local"
             class="form-control mt-1 text-center selection-field"
@@ -75,68 +81,18 @@
  
          <!-- Vehicle Type Selection -->
     <div class="mt-3 mb-3 field">
-      <select class="form-select selection-field text-center" id="vehicleType" onchange="toggleInputs()">
+      <select class="form-select selection-field text-center" id="vehicleType">
         <option value="">Select Vehicle Type</option>
         <option value="private">Private</option>
         <option value="public">Public</option>
       </select>
     </div>
 
-    <!-- Private Vehicle Inputs -->
-    <div id="privateInputs" class="hidden field text-center">
-      <div class="mb-3 ">
-        <label for="carModel" class="form-label text-center">Car Model</label>
-        <input type="text" class="form-control selection-field text-center" id="carModel" placeholder="Enter Car Model">
-      </div>
-      <div class="mb-3 ">
-        <label for="licensePlate" class="form-label text-center">License Plate</label>
-        <input type="text" class="form-control selection-field text-center"  id="licensePlate" placeholder="Enter License Plate Number">
-      </div>
-    </div>
 
-    <!-- Public Vehicle Inputs -->
-    <div id="publicInputs" class="hidden text-center">
-       
-    <div class=" field mt-3 text-center">
-      <label for="public vehicle form-label">Select Vehicle</label>
-          <select class="form-select text-center selection-field mb-3" aria-label="Default select example" name="vehicle">
-            
-            <option value="1">Bus</option>
-            <option value="2">CNG</option>
-            <option value="3">UBER</option>
-          </select>
-        </div>
-      <div class=" field mb-3">
-      
-        <input type="number" class="form-control selection-field text-center" id="routeName" placeholder="Maxium Capacity" name="capacity">
-      </div>
-    </div>
-
-    <!-- fare -->
-    <div class=" field mb-3 text-center">
-        
-        <input type="text" class="form-control selection-field text-center"  placeholder="Fare Amount in BDT" name="fare">
-      </div>
-    
-      <!-- Meet up location -->
-      <div class=" field mb-3 text-center">
-        
-        <input type="text" class="form-control selection-field text-center"  placeholder="Meet-Up Location(In-Short)" name="Meet_up_location">
-      </div>
-
-      <!-- repeatition  -->
-      <div class=" field mb-3 text-center">
-        
-        <select class="form-select text-center selection-field mb-3" aria-label="Default select example" name="Recurring_Trip">
-          <option selected >Recurring of this Trip</option>
-            <option value="1">NO</option>
-            <option value="2">YES</option>    
-          </select>
-      </div>
 
     <!-- Submit button -->
          <div class="d-flex flex-row justify-content-center mt-3">
-         <Register type="button" class="btn btn-outline-info ">Register</button>
+         <Register type="button" class="btn btn-outline-info ">Search</button>
         </div>
         
       </form>
