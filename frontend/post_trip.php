@@ -137,7 +137,7 @@
 
     <!-- Submit button -->
          <div class="d-flex flex-row justify-content-center mt-3">
-         <Register type="button" class="btn btn-outline-info ">Register</button>
+         <Register type="button" class="btn btn-outline-info ">Post</button>
         </div>
         
       </form>
