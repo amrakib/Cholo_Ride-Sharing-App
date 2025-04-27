@@ -32,7 +32,8 @@
         Please fill in this form to register for our service.
       </p>
 
-      <form>        
+      <form action="register.php" method="POST" enctype="multipart/form-data"> 
+        
         <!-- Name input fields -->
         <div class="form-floating mb-3">
           <input
