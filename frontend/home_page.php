@@ -23,7 +23,7 @@
       crossorigin="anonymous"
     />
 
-    <link rel="stylesheet" href="css/landing_style.css" />
+    <link rel="stylesheet" href="css/home_page_style.css" />
   </head>
 
   <body>
@@ -46,20 +46,20 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Contact</a>
+                <a class="nav-link" aria-current="page" href="index.php">Log In</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Ride</a>
+                <a class="nav-link" href="registration.php">Sign Up</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Profile</a>
+                <a class="nav-link" href="#About">About Us</a>
               </li>
             </ul>
           </div>
         </nav>
 
         <!-- Title -->
-<div  class="container  ">
+<div  class="container " id="About">
         <div class="row">
           <div class="col-lg-6">
             <h1 class="fw-bold mb-3">Your campus, your community, your ride.</h1>
@@ -83,7 +83,7 @@
     </section>
 
     <!-- Features -->
-<!-- 
+
      <section id="features">
       <div class="container text-center">
         <div class="row">
@@ -109,14 +109,14 @@
           </div>
         </div>
       </div>
-    </section> -->
+    </section>
 
 
     <!-- Footer -->
 
-    <!-- <footer id="footer">
+    <footer id="footer">
       <p>© Copyright Cholo</p>
-    </footer> -->
+    </footer>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
