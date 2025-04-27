@@ -52,7 +52,7 @@
                 <a class="nav-link" href="registration.php">Sign Up</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#About">About Us</a>
+                <a class="nav-link" href="#about_jump">About Us</a>
               </li>
             </ul>
           </div>
@@ -64,12 +64,12 @@
           <div class="col-lg-6">
             <h1 class="fw-bold mb-3">Your campus, your community, your ride.</h1>
             
-            <button class="btn btn-dark mt-5 " type="button">
-            <i class="fa-brands fa-apple fa-lg"></i>
-              Download
+            <button class="btn btn-dark mt-5 fs-3 " type="button">
+            <i class="fa-solid fa-circle-user"></i>
+              Log In
             </button>
-            <button class="btn btn-outline-light mt-5" type="button">
-            <i class="fa-brands fa-google-play fa-lg"></i>Download
+            <button class="btn btn-outline-light mt-5 fs-3" type="button">
+            <i class="fa-solid fa-user-plus"></i>Sign Up
             </button>
             </div>
           <div class="col-lg-6 img-fluid ">
@@ -84,39 +84,61 @@
 
     <!-- Features -->
 
-     <!-- <section id="features">
+     <section id="features" >
       <div class="container text-center">
+        <h1 class="fw-bold mb-5 mt-5" id="about_jump">About US</h1>
         <div class="row">
           <div class="col-4">
-            <i class="fa-solid fa-circle-check" style="color: #ff4c68"></i>
-            <h3>Easy to use.</h3>
-            <p>So easy to use, even your dog could do it.</p>
+          <img src="images/razeen.jpg" class="profile_pic_razeen" alt="razeen's image">
+            
+            <h3 class="fw-bold">Razeen Hassan</h3>
+            <p>Worked on Backend and Join Trip Feature</p>
+            <a href="https://www.facebook.com/razeon101" target="_blank">
+            <button type="button" class="btn btn-outline-info">
+            <i class="fa-brands fa-facebook"></i>
+            </button>
+            </a>
           </div>
 
           <div class="col-4">
-            <i
-              class="fa-solid fa-circle-half-stroke"
-              style="color: #ff4c68"
-            ></i>
-            <h3>Elite Clientele</h3>
-            <p>We have all the dogs, the greatest dogs.</p>
+          <img src="images/tawfiq.jpg" class="profile_pic_tawfiq" alt="tawfiq's image">
+            <h3 class="fw-bold">Tawfiqur Rahman</h3>
+            <p>Worked on Frontend and Post Trip Feature</p>
+            <a href="https://www.facebook.com/tawfiqur.rahman.581491" target="_blank">
+            <button type="button" class="btn btn-outline-info">
+            <i class="fa-brands fa-facebook"></i>
+            </button> 
+            </a>
           </div>
 
-          <div class="col-4">
-            <i class="fa-solid fa-heart" style="color: #ff4c68"></i>
-            <h3>Guaranteed to work.</h3>
-            <p>Find the love of your dog's life or your money back.</p>
+          <div class="col-4 p-0">
+          <img src="images/imtiaz.jpg" class="profile_pic_imtiaz p-0 m-0" alt="imatiaz's image">
+            <h3 class="fw-bold">Imtiaz Hossain</h3>
+            <p >Worked on Backend and User registration</p>
+            <a href="https://www.facebook.com/imtiaz.hossain.96930013" target="_blank">
+            <button type="button" class="btn btn-outline-info">
+            <i class="fa-brands fa-facebook"></i>
+            </button>
+            </a>
           </div>
         </div>
+        <div class="our_goal mt-5">
+        <h2 class="fw-bold " >Our Goal</h2>
+        <p>Our goal is to create a safe, easy, and efficient ride-sharing platform exclusively for BRAC University students.
+        We aim to connect students traveling between home and university, reduce travel costs, and promote a stronger community through shared trips.</p>
+        </div>
       </div>
-    </section> -->
+    </section>
 
 
     <!-- Footer -->
+    <footer class="text-center text-lg-start bg-light text-muted mt-5">
+      <div class="text-center p-4" style="background-color: #e3f2fd">
+        © 2023 Copyright:
+        <a class="text-reset fw-bold" href="#">CHOLO</a>
+      </div>
+    </footer>
 
-    <!-- <footer id="footer">
-      <p>© Copyright Cholo</p>
-    </footer> -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"

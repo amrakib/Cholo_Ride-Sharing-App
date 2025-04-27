@@ -43,7 +43,7 @@ include 'connection.php';
         <!-- <button type="submit" name="submit">Log In</button> -->
         <div id="extra-links">
           <a href="">Forget Password?</a>
-          <a href="Create Account Page.html" target="_blank">Create Account</a>
+          <a href="registration.php" target="_blank">Create Account</a>
         </div>
       </form>
     </div>
