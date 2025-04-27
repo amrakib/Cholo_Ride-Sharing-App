@@ -1,5 +1,5 @@
 -- ======================
--- User Table (UPDATED AGAIN)
+-- User Table (updated)
 -- ======================
 CREATE TABLE User (
     Student_ID VARCHAR(20) PRIMARY KEY,
@@ -17,7 +17,7 @@ CREATE TABLE User (
 );
 
 -- ======================
--- Test Case Insertion (UPDATED AGAIN)
+-- Test Case Insertion (updated)
 -- ======================
 INSERT INTO User (Student_ID, Name, Gsuite_Email, Password, Address, Gender, Phone_Number) VALUES
 ('23101125', 'Tawfiq', 'tawfiq@gmail.com', '123tawfiq', 'Mirpur, Dhaka', 'Male', '01712345678'),
