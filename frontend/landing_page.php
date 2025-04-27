@@ -49,7 +49,7 @@
                 <a class="nav-link" aria-current="page" href="#">Contact</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Ride</a>
+                <a class="nav-link" href="#">History</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Profile</a>
@@ -59,27 +59,50 @@
         </nav>
 
         <!-- Title -->
-<div  class="container  ">
+
         <div class="row">
           <div class="col-lg-6">
             <h1 class="fw-bold mb-3">Your campus, your community, your ride.</h1>
             
-            <button class="btn btn-dark mt-5 " type="button">
-            <i class="fa-brands fa-apple fa-lg"></i>
-              Download
-            </button>
-            <button class="btn btn-outline-light mt-5" type="button">
-            <i class="fa-brands fa-google-play fa-lg"></i>Download
-            </button>
+            
             </div>
-          <div class="col-lg-6 img-fluid ">
-            
-          <img src="landing_page.svg" alt="landing_svg" class="img-fluid " style="width: 100%; height: auto;"/>
-          
-            
+          <div class="col-lg-6 ">
+            <img src="landing_page.svg" class="title-image img-fluid" alt="landing_svg"  style="width: 100%; height: auto;"/>    
           </div>
         </div>
-      </div>
+        
+          
+            <div class="row mt-5">
+              <div class="col-3 text-center">
+            
+              <button type="button" class="btn btn-light btn-lg border-dark">
+            <i class="fa-solid fa-plus"></i>
+              Post Trip
+            </button>
+            </div>
+            <div class="col-3 text-center">
+            <button type="button" class="btn btn-light btn-lg border-dark">
+            
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            Join Trip
+            </button>
+            </div>
+            <div class="col-3 text-center">
+            <button type="button" class="btn btn-light btn-lg border-dark">
+            <i class="fa-solid fa-car"></i>
+              Add Vehicle
+            </button>
+            </div>
+            <div class="col-3 text-center">
+            <button class="btn btn-dark  btn-lg" type="button">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+              Trip History
+            </button>
+            </div>
+            </div>
+            
+        
+      
     </section>
 
     <!-- Features -->
