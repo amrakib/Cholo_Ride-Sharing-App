@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
+    <title>Cholo-Posting Trip</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
@@ -22,72 +23,149 @@
       crossorigin="anonymous"
     />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="css/template_style.css" />
+    <link rel="stylesheet" href="css/join_trip.css" />
   </head>
   <body>
-    <h1 class="text-center">Trip join Menu</h1>
+    
+    <div class="container-fluid  mt-5 form-container p-4 ">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-4">
+    <img src="svg_for_posting_trip.svg" alt="posting trip svg" height="200px"/>
+    </div>
+    <div class="col-8 ">
+      <h1 class=" mt-3 fw-bold">Posting a Ride</h1>
+      <p class="mb-4 ">
+        Please fill in this successfully posting a Ride.
+      </p>
+      </div>
+      </div>
+      <form method="post" action="">
+        <!-- From Where -->
+        
+        <div class=" field ">
+          <select class="form-select text-center selection-field" aria-label="Default select example" name="from_location">
+            <option selected>Where From</option>
+            <option value="1">Mohammadpur</option>
+            <option value="2">Dhanmondi</option>
+            <option value="3">Banasree</option>
+          </select>
+        </div>
+
+        <!-- To Where -->
+        <div class=" field mt-3 ">
+          <select class="form-select text-center selection-field" aria-label="Default select example" name="towhere">
+            <option selected>Where To</option>
+            <option value="1">Mohammadpur</option>
+            <option value="2">Dhanmondi</option>
+            <option value="3">Banasree</option>
+          </select>
+        </div>
+
+        <!-- Time -->
+        <div class=" field text-center mt-3 ">
+          <label for="starting time">Starting Time</label>
+          <input
+            type="datetime-local"
+            class="form-control mt-1 text-center selection-field"
+            id="floatingInput"
+            placeholder="Time"
+            name="time"
+            placeholder="Starting Time"  
+          />
+        </div>
+ 
+         <!-- Vehicle Type Selection -->
+    <div class="mt-3 mb-3 field">
+      <select class="form-select selection-field text-center" id="vehicleType" onchange="toggleInputs()">
+        <option value="">Select Vehicle Type</option>
+        <option value="private">Private</option>
+        <option value="public">Public</option>
+      </select>
+    </div>
+
+    <!-- Private Vehicle Inputs -->
+    <div id="privateInputs" class="hidden field text-center">
+      <div class="mb-3 ">
+        <label for="carModel" class="form-label text-center">Car Model</label>
+        <input type="text" class="form-control selection-field text-center" id="carModel" placeholder="Enter Car Model">
+      </div>
+      <div class="mb-3 ">
+        <label for="licensePlate" class="form-label text-center">License Plate</label>
+        <input type="text" class="form-control selection-field text-center"  id="licensePlate" placeholder="Enter License Plate Number">
+      </div>
+    </div>
+
+    <!-- Public Vehicle Inputs -->
+    <div id="publicInputs" class="hidden text-center">
+       
+    <div class=" field mt-3 text-center">
+      <label for="public vehicle form-label">Select Vehicle</label>
+          <select class="form-select text-center selection-field mb-3" aria-label="Default select example" name="vehicle">
+            
+            <option value="1">Bus</option>
+            <option value="2">CNG</option>
+            <option value="3">UBER</option>
+          </select>
+        </div>
+      <div class=" field mb-3">
+      
+        <input type="number" class="form-control selection-field text-center" id="routeName" placeholder="Maxium Capacity" name="capacity">
+      </div>
+    </div>
+
+    <!-- fare -->
+    <div class=" field mb-3 text-center">
+        
+        <input type="text" class="form-control selection-field text-center"  placeholder="Fare Amount in BDT" name="fare">
+      </div>
+    
+      <!-- Meet up location -->
+      <div class=" field mb-3 text-center">
+        
+        <input type="text" class="form-control selection-field text-center"  placeholder="Meet-Up Location(In-Short)" name="Meet_up_location">
+      </div>
+
+      <!-- repeatition  -->
+      <div class=" field mb-3 text-center">
+        
+        <select class="form-select text-center selection-field mb-3" aria-label="Default select example" name="Recurring_Trip">
+          <option selected >Recurring of this Trip</option>
+            <option value="1">NO</option>
+            <option value="2">YES</option>    
+          </select>
+      </div>
+
+    <!-- Submit button -->
+         <div class="d-flex flex-row justify-content-center mt-3">
+         <Register type="button" class="btn btn-outline-info ">Register</button>
+        </div>
+        
+      </form>
+    </div>
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <!-- JavaScript to handle form toggle -->
+<script>
+  function toggleInputs() {
+    var type = document.getElementById('vehicleType').value;
+    var privateInputs = document.getElementById('privateInputs');
+    var publicInputs = document.getElementById('publicInputs');
 
-    <!-- Nav Bar
-     
-    
-    -->
-    
-        <?php 
-        $string_val="<option selected>meow</option>";
-        ?>
-        <!-- Name input fields -->
-        <div class="mb-3">
-            <label for="options">From:</label>
-            <select class="form-select" aria-label="Default select example">
-            <option selected>Department</option>
-            <option value="cse">CSE</option>
-            <option value="bba">BBA</option>
-            <option value="architecture">Architecture</option>
-            <option value="eee">EEE</option>
-            <option value="law">Law</option>
-            <option value="pharmacy">Pharmacy</option>
-            <option value="economics">Economics</option>
-            <?php echo $string_val; ?>
-          </select>
-        </div>
-
-        <div class="mb-3">
-            <label for="options">Where to:</label>
-            <select class="form-select" aria-label="Default select example">
-            <option selected>Department</option>
-            <option value="cse">CSE</option>
-            <option value="bba">BBA</option>
-            <option value="architecture">Architecture</option>
-            <option value="eee">EEE</option>
-            <option value="law">Law</option>
-            <option value="pharmacy">Pharmacy</option>
-            <option value="economics">Economics</option>
-            <?php echo $string_val; ?>
-          </select>
-        </div>
-
-        <div class="mb-3">
-            <label for="options">Mode of transport:</label>
-            <select class="form-select" aria-label="Default select example">
-            <option selected>Department</option>
-            <option value="cse">CSE</option>
-            <option value="bba">BBA</option>
-            <option value="architecture">Architecture</option>
-            <option value="eee">EEE</option>
-            <option value="law">Law</option>
-            <option value="pharmacy">Pharmacy</option>
-            <option value="economics">Economics</option>
-            <?php echo $string_val; ?>
-          </select>
-        </div>
-
-    </form>
+    if (type === 'private') {
+      privateInputs.classList.remove('hidden');
+      publicInputs.classList.add('hidden');
+    } else if (type === 'public') {
+      publicInputs.classList.remove('hidden');
+      privateInputs.classList.add('hidden');
+    } else {
+      // Hide all if no selection
+      privateInputs.classList.add('hidden');
+      publicInputs.classList.add('hidden');
+    }
+  }
+</script>
   </body>
 </html>
