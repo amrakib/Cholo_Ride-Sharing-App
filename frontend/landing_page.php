@@ -82,11 +82,13 @@
             </a>
             </div>
             <div class="col-3 text-center">
+              <a href="../Razeen_Experiment/trip_browse.php">
             <button type="button" class="btn btn-light btn-lg border-dark">
             
             <i class="fa-solid fa-arrow-right-to-bracket"></i>
             Join Trip
             </button>
+            </a>
             </div>
             <div class="col-3 text-center">
             <button type="button" class="btn btn-light btn-lg border-dark">
