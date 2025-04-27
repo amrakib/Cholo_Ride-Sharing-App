@@ -34,6 +34,28 @@ CREATE TABLE Private_Vehicle (
     FOREIGN KEY (Owner_ID) REFERENCES User(Student_ID) ON DELETE SET NULL
 );
 
+
+-- ======================
+-- Locations
+-- ======================
+
+
+CREATE Table Locations (
+    area_locations varchar(30) PRIMARY KEY
+);
+
+
+-- ======================
+-- Location default values
+-- ======================
+INSERT INTO Locations VALUES
+("Dhanmondi"),
+("Gulshan"),
+("Badda"),
+("Mohakhali"),
+("Uttara"),
+("Mirpur");
+
 -- ======================
 -- Admin
 -- ======================
