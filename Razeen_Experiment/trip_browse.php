@@ -28,16 +28,16 @@
   <body>
     
     <div class="container-fluid  mt-5 form-container p-4 ">
-      <div class="row d-flex justify-content-center align-items-center">
-        <div class="col-4">
-    </div>
-    <div class="col-8 ">
+      <div class="text-center mb-3">
+       
+    
       <h1 class=" mt-3 fw-bold">Join a Trip</h1>
       <p class="mb-4 ">
         Search Your preferrable Trips
       </p>
       </div>
-      </div>
+      
+      
       <form method="post" action="">
         <!-- From Where -->
         
