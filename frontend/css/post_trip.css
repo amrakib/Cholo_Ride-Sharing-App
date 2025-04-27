@@ -1,0 +1,30 @@
+body {
+  background-image: linear-gradient(220deg, #fbe4d6 0%, #8fd3f4);
+  background-attachment: fixed;
+}
+
+.form-container {
+  background-color: rgb(230, 238, 245);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  width: 60%;
+}
+
+.field {
+  margin: auto;
+  width: 60%;
+}
+.selection-field {
+  border-radius: 30px;
+  /* width: 60%; */
+}
+.container-fluid {
+  border-radius: 20px;
+}
+.hidden {
+  display: none;
+}
+.svg {
+  height: 10px;
+  width: auto;
+}

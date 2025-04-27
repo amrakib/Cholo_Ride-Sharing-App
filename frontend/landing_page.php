@@ -74,11 +74,12 @@
           
             <div class="row mt-5">
               <div class="col-3 text-center">
-            
+              <a href="post_trip.php">
               <button type="button" class="btn btn-light btn-lg border-dark">
             <i class="fa-solid fa-plus"></i>
               Post Trip
             </button>
+            </a>
             </div>
             <div class="col-3 text-center">
             <button type="button" class="btn btn-light btn-lg border-dark">
@@ -100,7 +101,7 @@
             </button>
             </div>
             </div>
-            
+           
         
       
     </section>
