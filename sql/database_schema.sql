@@ -13,7 +13,6 @@ CREATE TABLE User (
     Password VARCHAR(100) NOT NULL,
     Address VARCHAR(255),     -- added Address
     Gender VARCHAR(10),       -- added Gender
-    CONSTRAINT chk_gender CHECK (Gender IN ('Male', 'Female', 'Other'))
 );
 
 -- ======================
