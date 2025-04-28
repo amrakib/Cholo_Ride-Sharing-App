@@ -35,7 +35,7 @@
     <div class="col-8 ">
       <h1 class=" mt-3 fw-bold">Posting a Ride</h1>
       <p class="mb-4 ">
-        Please fill in this successfully posting a Ride.
+        Please fill this for successfully posting a Ride.
       </p>
       </div>
       </div>

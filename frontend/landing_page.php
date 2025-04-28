@@ -91,10 +91,12 @@
             </a>
             </div>
             <div class="col-3 text-center">
+            <a href="add_vehicle.php">
             <button type="button" class="btn btn-light btn-lg border-dark">
             <i class="fa-solid fa-car"></i>
               Add Vehicle
             </button>
+            </a>
             </div>
             <div class="col-3 text-center">
             <button class="btn btn-dark  btn-lg" type="button">

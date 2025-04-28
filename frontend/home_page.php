@@ -103,7 +103,7 @@
           <div class="col-4">
           <img src="images/tawfiq.jpg" class="profile_pic_tawfiq" alt="tawfiq's image">
             <h3 class="fw-bold">Tawfiqur Rahman</h3>
-            <p>Worked on Frontend and Post Trip Feature</p>
+            <p>Worked on Frontend and Post Trip, Add Vehicle Features</p>
             <a href="https://www.facebook.com/tawfiqur.rahman.581491" target="_blank">
             <button type="button" class="btn btn-outline-info">
             <i class="fa-brands fa-facebook"></i>

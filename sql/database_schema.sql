@@ -26,13 +26,22 @@ INSERT INTO User (Student_ID, Name, Gsuite_Email, Password, Address, Gender, Pho
 -- ======================
 -- Private Vehicle
 -- ======================
-CREATE TABLE Private_Vehicle (
+CREATE TABLE Private_Vehicle (  --cahnged orientation
+     Vehicle_Type VARCHAR(20) , --added a atribute called vehicle type
+     Model_Name VARCHAR(50),
     Vehicle_Number VARCHAR(20) PRIMARY KEY,
-    Model_Name VARCHAR(50),
     License_Number VARCHAR(30) UNIQUE,
+    Capacity INT,  --added a atribute called capacity
     Owner_ID VARCHAR(20),
     FOREIGN KEY (Owner_ID) REFERENCES User(Student_ID) ON DELETE SET NULL
 );
+
+-- ======================
+-- Test Case Insertion into Private Vehicle
+-- ======================
+INSERT INTO Private_Vehicle
+VALUES ("Bike", "Fzs v3", "618968","123456",1,"23101125");
+
 
 
 -- ======================
