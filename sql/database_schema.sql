@@ -20,20 +20,25 @@ CREATE TABLE User (
 -- ======================
 INSERT INTO User (Student_ID, Name, Gsuite_Email, Password, Address, Gender, Phone_Number) VALUES
 ('23101125', 'Tawfiq', 'tawfiq@gmail.com', '123tawfiq', 'Mirpur, Dhaka', 'Male', '01712345678'),
+('23102151', 'Imtiaz', 'Imtiaz@gmail.com', '123tawfiq', 'Mirpur, Dhaka', 'Male', '01712345678'),
+('23102352', 'Ezio', 'Ezio@gmail.com', '123tawfiq', 'Mirpur, Dhaka', 'Male', '01712345678'),
+('23102621', 'Geralt', 'Geralt@gmail.com', '123tawfiq', 'Mirpur, Dhaka', 'Male', '01712345678'),
+('23101621', 'Desmond', 'Desmond@gmail.com', '123tawfiq', 'Mirpur, Dhaka', 'Male', '01712345678'),
+('23109200', 'Razor', 'Razor@gmail.com', '123tawfiq', 'Mirpur, Dhaka', 'Male', '01712345678'),
 ('23101126', 'Razeen', 'razeen@gmail.com', '123razeen', 'Banani, Dhaka', 'Male', '01812345679');
 
 
 -- ======================
 -- Private Vehicle
 -- ======================
-CREATE TABLE Private_Vehicle (  --cahnged orientation
-     Vehicle_Type VARCHAR(20) , --added a atribute called vehicle type
-     Model_Name VARCHAR(50),
+CREATE TABLE Private_Vehicle (
+    Vehicle_Type VARCHAR(20),
+    Model_Name VARCHAR(50),
     Vehicle_Number VARCHAR(20) PRIMARY KEY,
     License_Number VARCHAR(30) UNIQUE,
-    Capacity INT,  --added a atribute called capacity
+    Capacity INT,
     Owner_ID VARCHAR(20),
-    FOREIGN KEY (Owner_ID) REFERENCES User(Student_ID) ON DELETE SET NULL
+    FOREIGN KEY (Owner_ID) REFERENCES User(Student_ID)
 );
 
 -- ======================
@@ -87,8 +92,22 @@ CREATE TABLE Trips (
     Meet_up_location VARCHAR(100),
     Recurring_Trip BOOLEAN,
     Mode_of_Commute VARCHAR(30),
+    trip_status VARCHAR(30),
+    Used_capacity INT,
     FOREIGN KEY (Student_ID) REFERENCES User(Student_ID) ON DELETE SET NULL
 );
+
+-- ======================
+-- Trip experiment values
+-- ======================
+
+INSERT INTO Trips VALUES
+("123","23102151","DMD",5,"12:30","2018-5-02",50.55,"Abahani",TRUE,"BIKE","Available",5),
+("124","23102352","DMD",5,"12:30","2018-5-02",50.55,"Abahani",TRUE,"BIKE","Available",1),
+("125","23102621","DMD",5,"12:30","2018-5-02",50.55,"Abahani",TRUE,"BIKE","Available",3),
+("126","23101126","DMD",5,"12:30","2018-5-02",50.55,"Abahani",TRUE,"BIKE","Available",1),
+("127","23109200","DMD",5,"12:30","2018-5-02",50.55,"Abahani",TRUE,"BIKE","Available",3);
+
 
 -- ======================
 -- Trip Joiners

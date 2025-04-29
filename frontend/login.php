@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'connection.php';
 if(isset($_POST['submit']))
 {
@@ -10,6 +11,11 @@ if(isset($_POST['submit']))
     $count=mysqli_num_rows($result);
     if($count==1)
     {
+        
+        $_SESSION["User_ID"] = $row["Student_ID"];
+        $_SESSION["Student_Name"] = $row["Name"];
+        $_SESSION["User_Default_Location"] = $row["Thana"];
+        
         header("Location:landing_page.php"); 
         
         // Redirect to another page or perform other actions

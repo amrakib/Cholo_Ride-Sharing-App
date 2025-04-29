@@ -47,7 +47,7 @@ $all_locs = $conn->query($location_value_fetch);
         Search Your preferrable Trips
       </p>
       </div>
-      <form method="post" action="">
+      <form method="post" action="search_processing.php">
         <!-- From Where -->
         
         <div class=" field ">
@@ -99,47 +99,22 @@ $all_locs = $conn->query($location_value_fetch);
         </div>
  
          <!-- Vehicle Type Selection -->
-    <div class="mt-3 mb-3 field">
-      <select class="form-select selection-field text-center" id="vehicleType">
-        <option value="">Select Vehicle Type</option>
-        <option value="private">Private</option>
-        <option value="public">Public</option>
-      </select>
-    </div>
+        <div class="mt-3 mb-3 field">
+          <select class="form-select selection-field text-center" name="cartype">    <!-- This variable is not being passed (NEED FIXING) -->
+          <option value="Any">Select Vehicle Type</option>
+          <option value="private">Private</option>
+          <option value="public">Public</option>
+          </select>
+        </div>
 
 
 
     <!-- Submit button -->
          <div class="d-flex flex-row justify-content-center mt-3">
-         <Register type="button" class="btn btn-outline-info ">Search</button>
+         <button type="submit" name="search" value="Search" class="btn btn-outline-info ">Search</button>
         </div>
         
       </form>
     </div>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-    <!-- JavaScript to handle form toggle -->
-<script>
-  function toggleInputs() {
-    var type = document.getElementById('vehicleType').value;
-    var privateInputs = document.getElementById('privateInputs');
-    var publicInputs = document.getElementById('publicInputs');
-
-    if (type === 'private') {
-      privateInputs.classList.remove('hidden');
-      publicInputs.classList.add('hidden');
-    } else if (type === 'public') {
-      publicInputs.classList.remove('hidden');
-      privateInputs.classList.add('hidden');
-    } else {
-      // Hide all if no selection
-      privateInputs.classList.add('hidden');
-      publicInputs.classList.add('hidden');
-    }
-  }
-</script>
   </body>
 </html>
