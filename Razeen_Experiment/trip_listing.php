@@ -66,12 +66,29 @@ include '../frontend/connection.php';
         <div class="cell row-1">buttons</div>
 
         <?php
+            
+            $where_criteria=" AND where_loc='".$_SESSION["join_from"]."'";
+            $to_criteria=" AND to_loc='".$_SESSION["join_to"]."'";
+            $type_criteria=" AND Mode_of_Commute='".$_SESSION["join_type"]."'";
 
-            $fetch_query="SELECT * FROM Trips where trip_status='Available'";
+            $date_time=explode("T",$_SESSION["join_time"]);
+
+            $date=$date_time[0];
+
+            $time=$date_time[1];
+
+            $date_criteria=" AND Date='".$date."'";
+            $time_criteria=" AND Time >= \"".$time."\" AND Time <= ADDTIME(\"".$time."\", '00:30:00')";
+
+            $fetch_query="SELECT * FROM Trips WHERE trip_status='Available'".$where_criteria.$to_criteria.$date_criteria.$time_criteria;
             $fetched_data=mysqli_query($conn, $fetch_query);
             $count=mysqli_num_rows( $fetched_data );
             $data = $fetched_data->fetch_all(MYSQLI_NUM);
             
+            if ( $count== 0)
+            {
+                echo "No trips available";
+            }
 
             for ($i=0;$i<$count;$i++) 
             {   

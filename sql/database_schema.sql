@@ -68,7 +68,8 @@ INSERT INTO Locations VALUES
 ("Badda"),
 ("Mohakhali"),
 ("Uttara"),
-("Mirpur");
+("Mirpur"),
+("Lalmatia");
 
 -- ======================
 -- Admin
@@ -84,17 +85,19 @@ CREATE TABLE Admin (
 CREATE TABLE Trips (
     Trip_ID VARCHAR(30) PRIMARY KEY,
     Student_ID VARCHAR(20),
-    Thana VARCHAR(50),
+    where_loc VARCHAR(50),
     Capacity INT,
     Time TIME,
     Date DATE,
     Fare DECIMAL(4,2),
     Meet_up_location VARCHAR(100),
-    Recurring_Trip BOOLEAN,
     Mode_of_Commute VARCHAR(30),
     trip_status VARCHAR(30),
+    to_loc VARCHAR(50),
     Used_capacity INT,
-    FOREIGN KEY (Student_ID) REFERENCES User(Student_ID) ON DELETE SET NULL
+    FOREIGN KEY (Student_ID) REFERENCES User(Student_ID) ON DELETE SET NULL,
+    FOREIGN KEY (where_loc) REFERENCES Locations(area_locations) ON DELETE SET NULL,
+    FOREIGN KEY (to_loc) REFERENCES Locations(area_locations) ON DELETE SET NULL
 );
 
 -- ======================
@@ -102,11 +105,11 @@ CREATE TABLE Trips (
 -- ======================
 
 INSERT INTO Trips VALUES
-("123","23102151","DMD",5,"12:30","2018-5-02",50.55,"Abahani",TRUE,"BIKE","Available",5),
-("124","23102352","DMD",5,"12:30","2018-5-02",50.55,"Abahani",TRUE,"BIKE","Available",1),
-("125","23102621","DMD",5,"12:30","2018-5-02",50.55,"Abahani",TRUE,"BIKE","Available",3),
-("126","23101126","DMD",5,"12:30","2018-5-02",50.55,"Abahani",TRUE,"BIKE","Available",1),
-("127","23109200","DMD",5,"12:30","2018-5-02",50.55,"Abahani",TRUE,"BIKE","Available",3);
+("123","23102151","Dhanmondi",5,"12:30","2018-5-02",50.55,"Abahani","BIKE","Available","Gulshan",5),
+("124","23102352","Gulshan",5,"16:35","2022-5-03",24.55,"Abahani","BIKE","Available","Lalmatia",1),
+("125","23102621","Mohakhali",5,"23:30","2025-9-02",61.55,"Abahani","BIKE","Available","Uttara",3),
+("126","23101126","Uttara",5,"07:30","2015-7-01",26.55,"Abahani","BIKE","Available","Mirpur",1),
+("127","23109200","Mirpur",5,"12:30","2002-1-20",88.55,"Abahani","BIKE","Available","Badda",3);
 
 
 -- ======================

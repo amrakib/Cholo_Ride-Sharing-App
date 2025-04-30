@@ -101,9 +101,9 @@ $all_locs = $conn->query($location_value_fetch);
          <!-- Vehicle Type Selection -->
         <div class="mt-3 mb-3 field">
           <select class="form-select selection-field text-center" name="cartype">    <!-- This variable is not being passed (NEED FIXING) -->
-          <option value="Any">Select Vehicle Type</option>
-          <option value="private">Private</option>
-          <option value="public">Public</option>
+            <option value="Any">Select Vehicle Type</option>
+            <option value="private">Private</option>
+            <option value="public">Public</option>
           </select>
         </div>
 
@@ -111,7 +111,7 @@ $all_locs = $conn->query($location_value_fetch);
 
     <!-- Submit button -->
          <div class="d-flex flex-row justify-content-center mt-3">
-         <button type="submit" name="search" value="Search" class="btn btn-outline-info ">Search</button>
+         <button type="submit" name="search" value="Search" class="btn btn-outline-info ">Search</button> <!-- This button sends variables to search_processing.php -->
         </div>
         
       </form>

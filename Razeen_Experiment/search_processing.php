@@ -1,6 +1,5 @@
 <?php
 session_start(); 
-include '../frontend/connection.php';
 
 if (isset($_POST["search"]))
 {
