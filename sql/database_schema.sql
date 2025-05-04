@@ -12,8 +12,8 @@ CREATE TABLE User (
     Phone_Number VARCHAR(15), -- updated
     Password VARCHAR(100) NOT NULL,
     Address VARCHAR(255),     -- added Address
-    Gender VARCHAR(10)       -- added Gender
-    Role ENUM('admin', 'user') NOT NULL DEFAULT 'user', -- added Role for ADMIN and USER
+    Gender VARCHAR(10),       -- added Gender
+    Role ENUM('admin', 'user') NOT NULL DEFAULT 'user' -- added Role for ADMIN and USER
 );
 
 -- ======================
