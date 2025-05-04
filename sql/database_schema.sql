@@ -13,12 +13,13 @@ CREATE TABLE User (
     Password VARCHAR(100) NOT NULL,
     Address VARCHAR(255),     -- added Address
     Gender VARCHAR(10)       -- added Gender
+    Role ENUM('admin', 'user') NOT NULL DEFAULT 'user', -- added Role for ADMIN and USER
 );
 
 -- ======================
 -- Test Case Insertion (UPDATED AGAIN)
 -- ======================
-INSERT INTO User (Student_ID, Name, Gsuite_Email, Password, Address, Gender, Phone_Number) VALUES
+INSERT INTO User (Student_ID, Name, Gsuite_Email, Password, Address, Gender, Phone_Number, Role) VALUES
 ('23101125', 'Tawfiq', 'tawfiq@gmail.com', '123tawfiq', 'Mirpur, Dhaka', 'Male', '01712345678'),
 ('23102151', 'Imtiaz', 'Imtiaz@gmail.com', '123tawfiq', 'Mirpur, Dhaka', 'Male', '01712345678'),
 ('23102352', 'Ezio', 'Ezio@gmail.com', '123tawfiq', 'Mirpur, Dhaka', 'Male', '01712345678'),
@@ -26,7 +27,7 @@ INSERT INTO User (Student_ID, Name, Gsuite_Email, Password, Address, Gender, Pho
 ('23101621', 'Desmond', 'Desmond@gmail.com', '123tawfiq', 'Mirpur, Dhaka', 'Male', '01712345678'),
 ('23109200', 'Razor', 'Razor@gmail.com', '123tawfiq', 'Mirpur, Dhaka', 'Male', '01712345678'),
 ('23101126', 'Razeen', 'razeen@gmail.com', '123razeen', 'Banani, Dhaka', 'Male', '01812345679');
-
+('20000000', 'Admin_User', 'admin@g.bracu.ac.bd', '123admin','Banani', 'Dhaka', 'Male', '01813345679' , 'admin');
 
 -- ======================
 -- Private Vehicle
