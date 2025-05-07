@@ -99,12 +99,12 @@
             </a>
             </div>
             <div class="col-3 text-center">
-            <!-- <a href="trip_history.php">
-            <button class="btn btn-dark btn-lg" type="button">
-              <i class="fa-solid fa-clock-rotate-left"></i>
-              Trip History
-            </button>
-            </a> -->
+            <a href="trip_history.php">
+              <button class="btn btn-dark btn-lg" type="button">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                Trip History
+              </button>
+            </a>
             </div>
             </div>
            
