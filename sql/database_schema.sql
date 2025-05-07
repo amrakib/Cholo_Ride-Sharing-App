@@ -20,7 +20,7 @@ CREATE TABLE User (
 -- ======================
 INSERT INTO User (Student_ID, Name, Gsuite_Email, Password, Address, Gender, Phone_Number) VALUES
 ('23101125', 'Tawfiq', 'tawfiq@gmail.com', '123tawfiq', 'Mirpur, Dhaka', 'Male', '01712345678'),
-('23102151', 'Imtiaz', 'Imtiaz@gmail.com', '123tawfiq', 'Mirpur, Dhaka', 'Male', '01712345678'),
+('23101137', 'Imtiaz', 'Imtiaz@gmail.com', '123tawfiq', 'Mirpur, Dhaka', 'Male', '01712345678'),
 ('23102352', 'Ezio', 'Ezio@gmail.com', '123tawfiq', 'Mirpur, Dhaka', 'Male', '01712345678'),
 ('23102621', 'Geralt', 'Geralt@gmail.com', '123tawfiq', 'Mirpur, Dhaka', 'Male', '01712345678'),
 ('23101621', 'Desmond', 'Desmond@gmail.com', '123tawfiq', 'Mirpur, Dhaka', 'Male', '01712345678'),
@@ -35,7 +35,7 @@ CREATE TABLE Private_Vehicle (
     Vehicle_Type VARCHAR(20),
     Model_Name VARCHAR(50),
     Vehicle_Number VARCHAR(20) PRIMARY KEY,
-    License_Number VARCHAR(30) UNIQUE,
+    License_Number VARCHAR(30),
     Capacity INT,
     Owner_ID VARCHAR(20),
     FOREIGN KEY (Owner_ID) REFERENCES User(Student_ID)
@@ -105,12 +105,12 @@ CREATE TABLE Trips (
     FOREIGN KEY (to_loc) REFERENCES Locations(area_locations) ON DELETE SET NULL
 );
 
--- ======================
+-- >>>>>>>>>>>>>>>>>>>>>>
 -- Trip experiment values
--- ======================
+-- >>>>>>>>>>>>>>>>>>>>>>
 
 INSERT INTO Trips VALUES
-("123","23102151","Dhanmondi",5,"12:30","2018-5-02",50.55,"Abahani","BIKE","Available","Gulshan",5),
+("123","23101137","Dhanmondi",5,"12:30","2018-5-02",50.55,"Abahani","BIKE","Available","Gulshan",5),
 ("124","23102352","Gulshan",5,"16:35","2022-5-03",24.55,"Abahani","BIKE","Available","Lalmatia",1),
 ("125","23102621","Mohakhali",5,"23:30","2025-9-02",61.55,"Abahani","BIKE","Available","Uttara",3),
 ("126","23101126","Uttara",5,"07:30","2015-7-01",26.55,"Abahani","BIKE","Available","Mirpur",1),
@@ -127,6 +127,34 @@ CREATE TABLE Trip_Joiners (
     FOREIGN KEY (Student_ID) REFERENCES User(Student_ID) ON DELETE CASCADE,
     FOREIGN KEY (Trip_ID) REFERENCES Trips(Trip_ID) ON DELETE CASCADE
 );
+-- >>>>>>>>>>>>>>>>>>>>>>
+-- Trip history experiment values
+-- >>>>>>>>>>>>>>>>>>>>>>
+
+-- Imtiaz (23101137) created Trip_ID '123'
+-- Let's make Ezio and Geralt join that trip
+INSERT INTO Trip_Joiners VALUES
+('23102352', '123'),  -- Ezio joined Imtiaz's trip
+('23102621', '123');  -- Geralt joined Imtiaz's trip
+
+-- Ezio (23102352) created Trip_ID '124'
+-- Let's make Imtiaz join that trip
+INSERT INTO Trip_Joiners VALUES
+('23101137', '124');  -- Imtiaz joined Ezio's trip
+
+-- Geralt (23102621) created Trip_ID '125'
+-- Let's make Imtiaz and Razor join that trip
+INSERT INTO Trip_Joiners VALUES
+('23101137', '125'),
+('23109200', '125');
+
+-- Add another trip for Razeen
+INSERT INTO Trips VALUES
+("128", "23101126", "Badda", 3, "10:30", "2023-11-15", 45.00, "Star Kabab", "BIKE", "Available", "Gulshan", 2);
+
+-- Let Imtiaz join that too
+INSERT INTO Trip_Joiners VALUES
+('23101137', '128');
 
 -- ======================
 -- Trip Member Ratings

@@ -11,15 +11,18 @@ $user_count = 0;
 $male_count = 0;
 $female_count = 0;
 $trip_count = 0; // placeholder
+$report_count = 0; // placeholder  ---> I need to complete this part later.
 
 $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM User");
 $row = mysqli_fetch_assoc($result);
 $user_count = $row['total'];
 
+
 $male_result = mysqli_query($conn, "SELECT COUNT(*) AS males FROM User WHERE Gender='Male'");
 $female_result = mysqli_query($conn, "SELECT COUNT(*) AS females FROM User WHERE Gender='Female'");
 $male_count = mysqli_fetch_assoc($male_result)['males'];
 $female_count = mysqli_fetch_assoc($female_result)['females'];
+$report_count = mysqli_query($conn, "SELECT COUNT(*) AS reports FROM Reported_Trips WHERE Status='Pending'"); // --> i need to complete this part later.
 ?>
 
 <!DOCTYPE html>

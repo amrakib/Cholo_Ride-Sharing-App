@@ -74,7 +74,7 @@
           
             <div class="row mt-5">
               <div class="col-3 text-center">
-              <a href="post_trip.php">
+              <a href="../frontend/post_trip.php">
               <button type="button" class="btn btn-light btn-lg border-dark">
             <i class="fa-solid fa-plus"></i>
               Post Trip
@@ -91,7 +91,7 @@
             </a>
             </div>
             <div class="col-3 text-center">
-            <a href="add_vehicle.php">
+            <a href="../frontend/add_vehicle.php">
             <button type="button" class="btn btn-light btn-lg border-dark">
             <i class="fa-solid fa-car"></i>
               Add Vehicle
