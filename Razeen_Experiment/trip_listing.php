@@ -67,9 +67,15 @@ include '../frontend/connection.php';
 
         <?php
             
+            $fetch_query="SELECT * FROM Trips WHERE trip_status='Available'";
             $where_criteria=" AND where_loc='".$_SESSION["join_from"]."'";
             $to_criteria=" AND to_loc='".$_SESSION["join_to"]."'";
-            $type_criteria=" AND Mode_of_Commute='".$_SESSION["join_type"]."'";
+            if ($_SESSION["join_type"]!="Any")
+            {
+                $type_criteria=" AND Mode_of_Commute='".$_SESSION["join_type"]."'";
+                $fetch_query=$fetch_query.$type_criteria;
+            }
+
 
             $date_time=explode("T",$_SESSION["join_time"]);
 
@@ -80,7 +86,7 @@ include '../frontend/connection.php';
             $date_criteria=" AND Date='".$date."'";
             $time_criteria=" AND Time >= \"".$time."\" AND Time <= ADDTIME(\"".$time."\", '00:30:00')";
 
-            $fetch_query="SELECT * FROM Trips WHERE trip_status='Available'".$where_criteria.$to_criteria.$date_criteria.$time_criteria;
+            $fetch_query=$fetch_query.$where_criteria.$to_criteria.$date_criteria.$time_criteria;
             $fetched_data=mysqli_query($conn, $fetch_query);
             $count=mysqli_num_rows( $fetched_data );
             $data = $fetched_data->fetch_all(MYSQLI_NUM);
@@ -107,7 +113,7 @@ include '../frontend/connection.php';
 
                 echo "<div class=\"cell divided\"><div>Trip ID: ".$trip_id."</div><div>Fare: ".$fare."</div></div>";
                 echo "<div class=\"cell\">Available Space: ".$trip_fill."/".$capacity."</div>";
-                echo "<div class=\"cell\"> <button class = \"button-in-cell\">Click</button> </div>";
+                echo "<div class=\"cell\"> <form action='trip_info.php' method='post'><button class = \"button-in-cell\" type='submit' name='trip_choice' value=\"".$trip_id."\">Click</button> </form> </div> ";
             }
         ?>
     </div>
