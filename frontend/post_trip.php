@@ -48,15 +48,15 @@ session_start();
       </p>
       </div>
       </div>
-      <form method="post" action="">
+      <form method="post" action="post_trip_backend.php">
         <!-- From Where -->
         
         <div class=" field ">
           <select class="form-select text-center selection-field" aria-label="Default select example" name="from_location">
             <option selected>Where From</option>
-            <option value="1">Mohammadpur</option>
-            <option value="2">Dhanmondi</option>
-            <option value="3">Banasree</option>
+            <option value="Gulshan">Gulshan</option>
+            <option value="Dhanmondi">Dhanmondi</option>
+            <option value="Lalmatia">Lalmatia</option>
           </select>
         </div>
 
@@ -64,9 +64,9 @@ session_start();
         <div class=" field mt-3 ">
           <select class="form-select text-center selection-field" aria-label="Default select example" name="towhere">
             <option selected>Where To</option>
-            <option value="1">Mohammadpur</option>
-            <option value="2">Dhanmondi</option>
-            <option value="3">Banasree</option>
+            <option value="Gulshan">Gulshan</option>
+            <option value="Dhanmondi">Dhanmondi</option>
+            <option value="Lalmatia">Lalmatia</option>
           </select>
         </div>
 
@@ -85,23 +85,21 @@ session_start();
  
          <!-- Vehicle Type Selection -->
     <div class="mt-3 mb-3 field">
-      <select class="form-select selection-field text-center" id="vehicleType" onchange="toggleInputs()">
+      <select class="form-select selection-field text-center" id="vehicleType" name="mode_commute" onchange="toggleInputs()">
         <option value="">Select Vehicle Type</option>
-        <option value="private">Private</option>
-        <option value="public">Public</option>
+        <option value="Private">Private</option>
+        <option value="Public">Public</option>
       </select>
     </div>
 
     <!-- Private Vehicle Inputs -->
     <div id="privateInputs" class="hidden field text-center">
-      <div class="mb-3 ">
-        <label for="carModel" class="form-label text-center">Car Model</label>
-        <input type="text" class="form-control selection-field text-center" id="carModel" placeholder="Enter Car Model">
-      </div>
-      <div class="mb-3 ">
-        <label for="licensePlate" class="form-label text-center">License Plate</label>
-        <input type="text" class="form-control selection-field text-center"  id="licensePlate" placeholder="Enter License Plate Number">
-      </div>
+
+       <!-- This is where vehicle select or Add button will be inserted -->
+      <div id="vehicleOptionsContainer" class=" mt-3 text-center "></div>
+      
+      <!-- Capacity field -->
+   
     </div>
 
     <!-- Public Vehicle Inputs -->
@@ -135,18 +133,20 @@ session_start();
       </div>
 
       <!-- repeatition  -->
-      <div class=" field mb-3 text-center">
+      <!-- <div class=" field mb-3 text-center">
         
         <select class="form-select text-center selection-field mb-3" aria-label="Default select example" name="Recurring_Trip">
           <option selected >Recurring of this Trip</option>
             <option value="1">NO</option>
             <option value="2">YES</option>    
           </select>
-      </div>
+      </div> -->
 
     <!-- Submit button -->
          <div class="d-flex flex-row justify-content-center mt-3">
-         <Register type="button" class="btn btn-outline-info ">Post</button>
+         <button type="submit" class="btn btn-outline-success">Post Trip
+
+         </button>
         </div>
         
       </form>
@@ -163,10 +163,22 @@ session_start();
     var privateInputs = document.getElementById('privateInputs');
     var publicInputs = document.getElementById('publicInputs');
 
-    if (type === 'private') {
+    if (type === 'Private') {
+      
       privateInputs.classList.remove('hidden');
       publicInputs.classList.add('hidden');
-    } else if (type === 'public') {
+      fetch('fetch_vehicle.php') 
+      .then(response => response.text())
+      .then(html => {
+          // Insert vehicle options into a container inside privateInputs
+          document.getElementById('vehicleOptionsContainer').innerHTML = html;
+        })
+        .catch(err => {
+          console.error('Failed to load vehicle data:', err);
+        });
+
+
+    } else if (type === 'Public') {
       publicInputs.classList.remove('hidden');
       privateInputs.classList.add('hidden');
     } else {
@@ -175,6 +187,19 @@ session_start();
       publicInputs.classList.add('hidden');
     }
   }
+</script>
+<script>
+function setCapacity() {
+  var select = document.getElementById("vehicleSelect");
+  var selectedOption = select.options[select.selectedIndex];
+  var capacity = selectedOption.getAttribute("data-capacity");
+
+  if (capacity) {
+    document.getElementById("capacity").value = capacity;
+  } else {
+    document.getElementById("capacity").value = "";
+  }
+}
 </script>
   </body>
 </html>
