@@ -29,7 +29,7 @@ session_start();
 
     <div class="text-center mt-5">
       <h3 class="text-success">✅ <?php echo $_SESSION['success']; ?></h3>
-      <a href="landing_page.php" >
+      <a href="../backend/landing_page.php" >
         <button type="button"class="btn btn btn-outline-success mt-4">Go Back Home</button></a>
     </div>
 

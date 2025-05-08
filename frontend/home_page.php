@@ -46,10 +46,10 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="index.php">Log In</a>
+                <a class="nav-link" aria-current="page" href="../backend/index.php" target="_blank">Log In</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="registration.php">Sign Up</a>
+                <a class="nav-link" href="../backend/registration.php" target="_blank">Sign Up</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#about_jump">About Us</a>
@@ -60,17 +60,21 @@
 
         <!-- Title -->
 <div  class="container " id="About">
+  
         <div class="row">
           <div class="col-lg-6">
             <h1 class="fw-bold mb-3">Your campus, your community, your ride.</h1>
-            
+            <a href="../backend/index.php">
             <button class="btn btn-dark mt-5 fs-3 " type="button">
             <i class="fa-solid fa-circle-user"></i>
               Log In
             </button>
+            </a>
+            <a href="../backend/registration.php">
             <button class="btn btn-outline-light mt-5 fs-3" type="button">
             <i class="fa-solid fa-user-plus"></i>Sign Up
             </button>
+            </a>
             </div>
           <div class="col-lg-6 img-fluid ">
             

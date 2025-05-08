@@ -1,7 +1,11 @@
 <?php
 session_start();
  // Start the session to store temporary success message
-
+ if (!isset($_SESSION["User_ID"])) {
+    header("Location: ../backend/index.php");
+    exit();
+  }
+$student_id = $_SESSION["User_ID"];
 // Step 1: Connect to Database
 $servername = "localhost";
 $username = "root";
@@ -25,24 +29,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $vehicle_number = $_POST['vehicle_number'];
     $license_number = $_POST['license_number'];
     $capacity = $_POST['capacity'];
-    $owner_id = $_POST['owner_id'];
+    $owner_id = $student_id ;
 
     $sql = "INSERT INTO private_vehicle (vehicle_type, model_name, vehicle_number, license_number, capacity, owner_id) 
-            VALUES (?, ?, ?, ?, ?, ?)";
+            VALUES (?, ?, ?, ?, ?, ? )";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssii", $vehicle_type, $model_name, $vehicle_number, $license_number, $capacity, $owner_id);
+    $stmt->bind_param("ssssis", $vehicle_type, $model_name, $vehicle_number, $license_number, $capacity, $owner_id);
+
+
 
     try {
         if ($stmt->execute()) {
             $_SESSION['success'] = "Vehicle added successfully!";
             header("Location: add_vehicle_success.php"); // Redirect to success page
             exit();
+
         }
     } catch (mysqli_sql_exception $e) {
         if ($e->getCode() == 1062) {
             // 1062 = Duplicate entry error
             $_SESSION['error'] = "🚫 Vehicle number already exists. Please enter a unique vehicle number!";
+        
         } else {
             $_SESSION['error'] = "Error: " . $e->getMessage();
         }

@@ -1,6 +1,11 @@
 <?php
 include 'connection.php';
-
+session_start();
+ // Start the session to store temporary success message
+ if (!isset($_SESSION["User_ID"])) {
+    header("Location: ../backend/index.php");
+    exit();
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -78,10 +83,10 @@ include 'connection.php';
       </div>
 
       <!-- student_id -->
-      <div class=" field mb-3 text-center">
+      <!-- <div class=" field mb-3 text-center">
         
         <input type="text" class="form-control selection-field text-center"  placeholder="Your Studnet ID" name="owner_id">
-      </div>
+      </div> -->
       
     <!-- Submit button -->
          <div class="d-flex flex-row justify-content-center mt-3">

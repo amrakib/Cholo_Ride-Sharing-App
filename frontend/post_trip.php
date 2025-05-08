@@ -1,3 +1,12 @@
+<?php
+include 'connection.php';
+session_start();
+ // Start the session to store temporary success message
+ if (!isset($_SESSION["User_ID"])) {
+    header("Location: ../backend/index.php");
+    exit();
+  }
+?>
 <!DOCTYPE html>
 <html>
   <head>
