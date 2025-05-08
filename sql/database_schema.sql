@@ -110,11 +110,15 @@ CREATE TABLE Trips (
 -- >>>>>>>>>>>>>>>>>>>>>>
 
 INSERT INTO Trips VALUES
-("123","23101137","Dhanmondi",5,"12:30","2018-5-02",50.55,"Abahani","BIKE","Available","Gulshan",5),
-("124","23102352","Gulshan",5,"16:35","2022-5-03",24.55,"Abahani","BIKE","Available","Lalmatia",1),
-("125","23102621","Mohakhali",5,"23:30","2025-9-02",61.55,"Abahani","BIKE","Available","Uttara",3),
-("126","23101126","Uttara",5,"07:30","2015-7-01",26.55,"Abahani","BIKE","Available","Mirpur",1),
-("127","23109200","Mirpur",5,"12:30","2002-1-20",88.55,"Abahani","BIKE","Available","Badda",3);
+("123","23101137","Dhanmondi",5,"12:30","2018-5-02",50.55,"Abahani","Public","Available","Gulshan",5),
+("200","23101137","Dhanmondi",5,"12:30","2018-5-02",50.55,"Abahani","Public","Available","Gulshan",5),
+("300","23101137","Dhanmondi",5,"12:30","2018-5-02",50.55,"Abahani","Public","Available","Gulshan",5),
+("400","23101137","Dhanmondi",5,"12:30","2018-5-02",50.55,"Abahani","Public","Available","Gulshan",5),
+("500","23101137","Dhanmondi",5,"12:30","2018-5-02",50.55,"Abahani","Public","Available","Gulshan",5),
+("124","23102352","Gulshan",5,"16:35","2022-5-03",24.55,"Abahani","Public","Available","Lalmatia",1),
+("125","23102621","Mohakhali",5,"23:30","2025-9-02",61.55,"Abahani","Public","Available","Uttara",3),
+("126","23101126","Uttara",5,"07:30","2015-7-01",26.55,"Abahani","Public","Available","Mirpur",1),
+("127","23109200","Mirpur",5,"12:30","2002-1-20",88.55,"Abahani","Public","Available","Badda",3);
 
 
 -- ======================

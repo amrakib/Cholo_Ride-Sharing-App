@@ -102,8 +102,8 @@ $all_locs = $conn->query($location_value_fetch);
         <div class="mt-3 mb-3 field">
           <select class="form-select selection-field text-center" name="cartype">    <!-- This variable is not being passed (NEED FIXING) -->
             <option value="Any">Select Vehicle Type</option>
-            <option value="private">Private</option>
-            <option value="public">Public</option>
+            <option value="Private">Private</option>
+            <option value="Public">Public</option>
           </select>
         </div>
 
