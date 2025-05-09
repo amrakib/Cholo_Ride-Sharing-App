@@ -1,123 +1,133 @@
 <?php
 session_start();
-include '../frontend/connection.php';
+include "../backend/db_connection.php";
+if (!isset($_SESSION["User_ID"])) {
+    header("Location: index.php");
+    exit();
+}
 ?>
 
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>10x3 Grid Layout</title>
-    <style>
-        body {
-            height: 100vh;
-            margin: 0;
-        }
-
-        .container {
-            display: grid;
-            grid-template-rows: repeat(5, 120px);
-            /* Changed the column widths here */
-            grid-template-columns: 45% 45% 10%;
-            height: auto;
-            padding: 0;
-            max-width: 100%;
-        }
-
-        .cell {
-            border: 1px solid #ccc;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            font-size: 16px;
-            color: #333;
-            word-wrap: break-word;
-        }
-
-        .cell.divided {
-            display: flex; /* Keep display flex, but change direction */
-            flex-direction: column; /* Make it a column layout */
-            justify-content: space-around; /* Space the divs vertically */
-            align-items: stretch; /* Make items stretch to the cell width */
-            width: 100%;
-        }
-
-        .cell.divided > div {
-            padding: 0;
-            width: 100%; /* Inner divs take full width of the cell */
-            height: 50%;
-            box-sizing: border-box;
-            text-align: center; /* You can adjust text alignment as needed */
-        }
-        .cell.divided > div:first-child{
-             border-bottom: 1px solid #ccc;
-        }
-
-        .row-1 {
-            font-weight: bold;
-            background-color: #f0f0f0;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>Trip info</title>
+    <link rel="stylesheet" href="css\trip_info.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <div class="cell row-1">Trip Owner</div>
-        <div class="cell row-1">Trip locations</div>
-        <div class="cell row-1">buttons</div>
 
-        <?php
+<h1><i class="fas fa-route"></i> Select From Available Trips</h1>
+
+<div class="filters">
+    <form method="post" action="listing_processing.php">
+        Sort by: 
+        <select name="criteria">
+            <option value="">Sort Criteria</option>
+            <option value="Fare">Fare</option>
+            <option value="Capacity">Available Capacity</option>
+        </select>
+        <select name="order">
+            <option value="undeclared">Order</option>
+            <option value="high">High to Low</option>
+            <option value="low">Low to High</option>
+        </select>
+        <button type="submit" name="but_val" value="submitted"><i class="fas fa-filter"></i> Filter</button>
+    </form>
+</div>
+
+<?php
             
-            $fetch_query="SELECT * FROM Trips WHERE trip_status='Available'";
-            $where_criteria=" AND where_loc='".$_SESSION["join_from"]."'";
-            $to_criteria=" AND to_loc='".$_SESSION["join_to"]."'";
-            if ($_SESSION["join_type"]!="Any")
+        $fetch_query="SELECT * FROM Trips WHERE trip_status='Available'";
+        $where_criteria=" AND where_loc='".$_SESSION["join_from"]."'";
+        $to_criteria=" AND to_loc='".$_SESSION["join_to"]."'";
+        if ($_SESSION["join_type"]!="Any")
+        {
+            $type_criteria=" AND Mode_of_Commute='".$_SESSION["join_type"]."'";
+            $fetch_query=$fetch_query.$type_criteria;
+        }
+
+
+        $date_time=explode("T",$_SESSION["join_time"]);
+
+        $date=$date_time[0];
+
+        $time=$date_time[1];
+
+        $date_criteria=" AND Date='".$date."'";
+        $time_criteria=" AND Time >= \"".$time."\" AND Time <= ADDTIME(\"".$time."\", '00:30:00')";
+        $order_addon="";
+        if ($_SESSION["sort_flag"])
+        {   
+            $order_addon=" ORDER BY";
+            $_SESSION["sort_flag"]=FALSE;
+            if ($_SESSION["order_criteria_flag"]=="Fare")
             {
-                $type_criteria=" AND Mode_of_Commute='".$_SESSION["join_type"]."'";
-                $fetch_query=$fetch_query.$type_criteria;
+                $order_addon=$order_addon." Fare";
+
+            }
+            else if ($_SESSION["order_criteria_flag"]=="Capacity")
+            {
+                $order_addon=$order_addon." Used_capacity";
             }
 
-
-            $date_time=explode("T",$_SESSION["join_time"]);
-
-            $date=$date_time[0];
-
-            $time=$date_time[1];
-
-            $date_criteria=" AND Date='".$date."'";
-            $time_criteria=" AND Time >= \"".$time."\" AND Time <= ADDTIME(\"".$time."\", '00:30:00')";
-
-            $fetch_query=$fetch_query.$where_criteria.$to_criteria.$date_criteria.$time_criteria;
-            $fetched_data=mysqli_query($conn, $fetch_query);
-            $count=mysqli_num_rows( $fetched_data );
-            $data = $fetched_data->fetch_all(MYSQLI_NUM);
+            if ($_SESSION["order_flag"]=="high")
+            {
+                $order_addon=$order_addon." DESC";
+            }
+            else if ($_SESSION["order_flag"]=="low")
+            {
+                $order_addon=$order_addon." ASC";
+            }
+            else
+            {
+                $order_addon=$order_addon." ASC";
+            }
             
-            if ( $count== 0)
-            {
-                echo "No trips available";
-            }
+        }
 
-            for ($i=0;$i<$count;$i++) 
-            {   
-                $trip_id = $data[$i][0];
-                $student_id = $data[$i][1];
-                $thana = $data[$i][2];
-                $capacity = $data[$i][3];
-                $time = $data[$i][4];
-                $date = $data[$i][5];
-                $fare = $data[$i][6];
-                $meetup = $data[$i][7];
-                $recurring = $data[$i][8];
-                $trip_mode = $data[$i][9];
-                $trip_status = $data[$i][10];
-                $trip_fill= $data[$i][11];
+        $fetch_query=$fetch_query.$where_criteria.$to_criteria.$date_criteria.$time_criteria.$order_addon;
+        $fetched_data=mysqli_query($conn, $fetch_query);
+        $count=mysqli_num_rows( $fetched_data );
+        $data = $fetched_data->fetch_all(MYSQLI_NUM);
+            
+        if ( $count== 0)
+        {
+            echo "No trips available";
+        }
 
-                echo "<div class=\"cell divided\"><div>Trip ID: ".$trip_id."</div><div>Fare: ".$fare."</div></div>";
-                echo "<div class=\"cell\">Available Space: ".$trip_fill."/".$capacity."</div>";
-                echo "<div class=\"cell\"> <form action='trip_info.php' method='post'><button class = \"button-in-cell\" type='submit' name='trip_choice' value=\"".$trip_id."\">Click</button> </form> </div> ";
-            }
-        ?>
-    </div>
-</body>
-</html>
+        for ($i=0;$i<$count;$i++) 
+        {   
+            $trip_id = $data[$i][0];
+            $student_id = $data[$i][1];
+            $thana = $data[$i][2];
+            $capacity = $data[$i][3];
+            $time = $data[$i][4];
+            $date = $data[$i][5];
+            $fare = $data[$i][6];
+            $meetup = $data[$i][7];
+            $recurring = $data[$i][8];
+            $trip_mode = $data[$i][8];
+            $trip_status = $data[$i][10];
+            $trip_fill= $data[$i][11];
+
+            echo "<div class='history_button'>";
+            echo "<div class='history-container'>";
+            echo "<div class='history-card'>";
+            echo "<strong>Trip ID: ".$trip_id."</strong><br>";
+            echo "<strong>Trip Route: ".$_SESSION["join_from"]."-->".$_SESSION["join_to"]."</strong><br>";
+            echo "<strong>Trip Date: ".$date."</strong><br>";
+            echo "<strong>Trip Time: ".$time."</strong><br>";
+            echo "<strong>Fare: ".$fare."</strong> BDT<br>";
+            echo "<strong>Available Space: ".$trip_fill."/".$capacity."</strong><br>";
+            echo "<strong>Mode of Transport: ".$trip_mode."</strong><br>";
+            echo "</div>";
+            echo "</div>";
+            echo "<div class='button_div'><form action='trip_info.php' method='post'><button class = \"choice_button\" type='submit' name='trip_choice' value=\"".$trip_id."\">Details</button> </form></div>";
+            echo "</div>";
+        }
+
+        $_SESSION["sort_flag"]=FALSE;
+?>
 
 
