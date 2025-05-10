@@ -8,8 +8,8 @@ if (!isset($_SESSION["User_ID"])) {
 }
 
 $loggedInID = $_SESSION["User_ID"];
-$dateFilter = $_GET['date'] ?? '';
-$statusFilter = $_GET['status'] ?? '';
+$dateFilter = mysqli_real_escape_string($conn, $_GET['date'] ?? '');
+$statusFilter = mysqli_real_escape_string($conn, $_GET['status'] ?? '');
 
 $filterSQL = "";
 if (!empty($dateFilter)) $filterSQL .= " AND t.Date = '$dateFilter'";
@@ -21,6 +21,7 @@ $ownTripsQuery = "
     LEFT JOIN User u ON t.Student_ID = u.Student_ID
     LEFT JOIN Private_Vehicle pv ON pv.Owner_ID = t.Student_ID
     WHERE t.Student_ID = '$loggedInID' $filterSQL
+    ORDER BY t.Date DESC, t.Time DESC
 ";
 
 $joinedTripsQuery = "
@@ -30,6 +31,7 @@ $joinedTripsQuery = "
     LEFT JOIN User u ON t.Student_ID = u.Student_ID
     LEFT JOIN Private_Vehicle pv ON pv.Owner_ID = t.Student_ID
     WHERE tj.Student_ID = '$loggedInID' $filterSQL
+    ORDER BY t.Date DESC, t.Time DESC
 ";
 
 $ownTripsResult = mysqli_query($conn, $ownTripsQuery);
@@ -41,7 +43,7 @@ $joinedTripsResult = mysqli_query($conn, $joinedTripsQuery);
 <head>
     <meta charset="UTF-8">
     <title>Trip History</title>
-    <link rel="stylesheet" href="css\trip_history.css">
+    <link rel="stylesheet" href="css/trip_history.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
@@ -67,34 +69,40 @@ $joinedTripsResult = mysqli_query($conn, $joinedTripsQuery);
 
 <h2><i class="fas fa-car-side"></i> Trips You Created</h2>
 <div class="history-container">
-    <?php while ($trip = mysqli_fetch_assoc($ownTripsResult)) { ?>
-        <div class="history-card">
-            <div class="badge <?= $trip['trip_status'] ?>"><?= $trip['trip_status'] ?></div>
-            <strong>Trip ID:</strong> <?= $trip['Trip_ID'] ?><br>
-            <strong>Rider:</strong> <?= $trip['Name'] ?><br>
-            <strong>Vehicle:</strong> <?= $trip['Vehicle_Type'] ?> - <?= $trip['Model_Name'] ?> (<?= $trip['Vehicle_Number'] ?>)<br>
-            <strong>From:</strong> <?= $trip['where_loc'] ?> <strong>To:</strong> <?= $trip['to_loc'] ?><br>
-            <strong>Date:</strong> <?= $trip['Date'] ?> <strong>Time:</strong> <?= $trip['Time'] ?><br>
-            <strong>Fare:</strong> <?= $trip['Fare'] ?> BDT<br>
-            <strong>Mode:</strong> <?= $trip['Mode_of_Commute'] ?><br>
-        </div>
-    <?php } ?>
+    <?php if (mysqli_num_rows($ownTripsResult) === 0) { ?>
+        <p>No trips found that you created.</p>
+    <?php } else {
+        while ($trip = mysqli_fetch_assoc($ownTripsResult)) { ?>
+            <div class="history-card">
+                <div class="badge <?= $trip['trip_status'] ?>"><?= $trip['trip_status'] ?></div>
+                <strong>Trip ID:</strong> <?= $trip['Trip_ID'] ?><br>
+                <strong>Rider:</strong> <?= $trip['Name'] ?><br>
+                <strong>Vehicle:</strong> <?= $trip['Vehicle_Type'] ?> - <?= $trip['Model_Name'] ?> (<?= $trip['Vehicle_Number'] ?>)<br>
+                <strong>From:</strong> <?= $trip['where_loc'] ?> <strong>To:</strong> <?= $trip['to_loc'] ?><br>
+                <strong>Date:</strong> <?= $trip['Date'] ?> <strong>Time:</strong> <?= $trip['Time'] ?><br>
+                <strong>Fare:</strong> <?= $trip['Fare'] ?> BDT<br>
+                <strong>Mode:</strong> <?= $trip['Mode_of_Commute'] ?><br>
+            </div>
+    <?php } } ?>
 </div>
 
 <h2><i class="fas fa-users"></i> Trips You Joined</h2>
 <div class="history-container">
-    <?php while ($trip = mysqli_fetch_assoc($joinedTripsResult)) { ?>
-        <div class="history-card">
-            <div class="badge <?= $trip['trip_status'] ?>"><?= $trip['trip_status'] ?></div>
-            <strong>Trip ID:</strong> <?= $trip['Trip_ID'] ?><br>
-            <strong>Rider:</strong> <?= $trip['Name'] ?><br>
-            <strong>Vehicle:</strong> <?= $trip['Vehicle_Type'] ?> - <?= $trip['Model_Name'] ?> (<?= $trip['Vehicle_Number'] ?>)<br>
-            <strong>From:</strong> <?= $trip['where_loc'] ?> <strong>To:</strong> <?= $trip['to_loc'] ?><br>
-            <strong>Date:</strong> <?= $trip['Date'] ?> <strong>Time:</strong> <?= $trip['Time'] ?><br>
-            <strong>Fare:</strong> <?= $trip['Fare'] ?> BDT<br>
-            <strong>Mode:</strong> <?= $trip['Mode_of_Commute'] ?><br>
-        </div>
-    <?php } ?>
+    <?php if (mysqli_num_rows($joinedTripsResult) === 0) { ?>
+        <p>No trips found that you joined.</p>
+    <?php } else {
+        while ($trip = mysqli_fetch_assoc($joinedTripsResult)) { ?>
+            <div class="history-card">
+                <div class="badge <?= $trip['trip_status'] ?>"><?= $trip['trip_status'] ?></div>
+                <strong>Trip ID:</strong> <?= $trip['Trip_ID'] ?><br>
+                <strong>Rider:</strong> <?= $trip['Name'] ?><br>
+                <strong>Vehicle:</strong> <?= $trip['Vehicle_Type'] ?> - <?= $trip['Model_Name'] ?> (<?= $trip['Vehicle_Number'] ?>)<br>
+                <strong>From:</strong> <?= $trip['where_loc'] ?> <strong>To:</strong> <?= $trip['to_loc'] ?><br>
+                <strong>Date:</strong> <?= $trip['Date'] ?> <strong>Time:</strong> <?= $trip['Time'] ?><br>
+                <strong>Fare:</strong> <?= $trip['Fare'] ?> BDT<br>
+                <strong>Mode:</strong> <?= $trip['Mode_of_Commute'] ?><br>
+            </div>
+    <?php } } ?>
 </div>
 
 </body>

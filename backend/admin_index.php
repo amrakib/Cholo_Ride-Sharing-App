@@ -10,8 +10,8 @@ if (!isset($_SESSION['admin'])) {
 $user_count = 0;
 $male_count = 0;
 $female_count = 0;
-$trip_count = 0; // placeholder
-$report_count = 0; // placeholder  ---> I need to complete this part later.
+$trip_result = mysqli_query($conn, "SELECT COUNT(*) AS total_trips FROM Trips");
+$trip_count = mysqli_fetch_assoc($trip_result)['total_trips'];
 
 $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM User");
 $row = mysqli_fetch_assoc($result);
@@ -22,7 +22,9 @@ $male_result = mysqli_query($conn, "SELECT COUNT(*) AS males FROM User WHERE Gen
 $female_result = mysqli_query($conn, "SELECT COUNT(*) AS females FROM User WHERE Gender='Female'");
 $male_count = mysqli_fetch_assoc($male_result)['males'];
 $female_count = mysqli_fetch_assoc($female_result)['females'];
-$report_count = mysqli_query($conn, "SELECT COUNT(*) AS reports FROM Reported_Trips WHERE Status='Pending'"); // --> i need to complete this part later.
+$report_result = mysqli_query($conn, "SELECT COUNT(*) AS reports FROM Reported_Trips WHERE Status='Pending'");
+$report_count_row = mysqli_fetch_assoc($report_result);
+$report_count = $report_count_row['reports'];
 ?>
 
 <!DOCTYPE html>
@@ -136,7 +138,7 @@ $report_count = mysqli_query($conn, "SELECT COUNT(*) AS reports FROM Reported_Tr
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <div>
                         <h6>Total Trips</h6>
-                        <h3>--</h3>
+                        <h3><?= $trip_count ?></h3>
                     </div>
                     <i class="bi bi-car-front-fill card-icon"></i>
                 </div>

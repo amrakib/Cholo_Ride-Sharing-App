@@ -69,7 +69,8 @@ INSERT INTO Locations VALUES
 ("Mohakhali"),
 ("Uttara"),
 ("Mirpur"),
-("Lalmatia");
+("Lalmatia"),
+("Banani");
 
 -- ======================
 -- Admin
@@ -112,16 +113,41 @@ INSERT INTO Trips (
     Student_ID, where_loc, Capacity, Time, Date,
     Fare, Meet_up_location, Mode_of_Commute,
     trip_status, to_loc, Used_capacity
-)VALUES
-("23101137","Dhanmondi",5,"12:30","2018-5-02",50.55,"Abahani","Public","Available","Gulshan",5),
-("23101137","Dhanmondi",5,"12:30","2018-5-02",50.55,"Abahani","Public","Available","Gulshan",5),
-("23101137","Dhanmondi",5,"12:30","2018-5-02",50.55,"Abahani","Public","Available","Gulshan",5),
-("23101137","Dhanmondi",5,"12:30","2018-5-02",50.55,"Abahani","Public","Available","Gulshan",5),
-("23101137","Dhanmondi",5,"12:30","2018-5-02",50.55,"Abahani","Public","Available","Gulshan",5),
-("23102352","Gulshan",5,"16:35","2022-5-03",24.55,"Abahani","Public","Available","Lalmatia",1),
-("23102621","Mohakhali",5,"23:30","2025-9-02",61.55,"Abahani","Public","Available","Uttara",3),
-("23101126","Uttara",5,"07:30","2015-7-01",26.55,"Abahani","Public","Available","Mirpur",1),
-("23109200","Mirpur",5,"12:30","2002-1-20",88.55,"Abahani","Public","Available","Badda",3);
+) VALUES
+
+-- ("23101137","Dhanmondi",5,"12:30","2018-05-02",50.55,"Abahani","Public","Available","Gulshan",5),
+("23102352","Gulshan",5,"16:35","2022-05-03",24.55,"Abahani","Public","Available","Lalmatia",1),
+("23102621","Mohakhali",5,"23:30","2025-09-02",61.55,"Abahani","Public","Available","Uttara",3),
+("23101126","Uttara",5,"07:30","2015-07-01",26.55,"Abahani","Public","Available","Mirpur",1),
+("23109200","Mirpur",5,"12:30","2002-01-20",88.55,"Abahani","Public","Available","Badda",3);
+
+INSERT INTO Trips (Student_ID, where_loc, Capacity, Time, Date, Fare, Meet_up_location, Mode_of_Commute, trip_status, to_loc, Used_capacity)
+VALUES 
+("23101137", "Dhanmondi", 4, "12:00", "2025-05-01", 50.00, "Dhanmondi 27", "Public", "Completed", "Gulshan", 3); -- Trip_ID = LAST_INSERT_ID() = @TripID1
+
+SET @TripID1 = LAST_INSERT_ID();
+
+INSERT INTO Trips (Student_ID, where_loc, Capacity, Time, Date, Fare, Meet_up_location, Mode_of_Commute, trip_status, to_loc, Used_capacity)
+VALUES 
+("23101137", "Mirpur", 4, "14:30", "2025-05-05", 60.00, "Mirpur 10", "Bike", "Available", "Badda", 2); -- Trip_ID = LAST_INSERT_ID() = @TripID2
+
+SET @TripID2 = LAST_INSERT_ID();
+
+-- Ezio (23102352) created a trip
+INSERT INTO Trips (Student_ID, where_loc, Capacity, Time, Date, Fare, Meet_up_location, Mode_of_Commute, trip_status, to_loc, Used_capacity)
+VALUES 
+("23102352", "Mohakhali", 3, "10:15", "2025-05-03", 40.00, "Mohakhali Bus Stand", "Public", "Completed", "Lalmatia", 2); -- @TripID3
+
+SET @TripID3 = LAST_INSERT_ID();
+
+-- Geralt (23102621) created a trip
+INSERT INTO Trips (Student_ID, where_loc, Capacity, Time, Date, Fare, Meet_up_location, Mode_of_Commute, trip_status, to_loc, Used_capacity)
+VALUES 
+("23102621", "Banani", 2, "08:45", "2025-05-04", 35.00, "Banani 11", "Bike", "Cancelled", "Uttara", 1); -- @TripID4
+
+SET @TripID4 = LAST_INSERT_ID();
+
+
 
 
 -- ======================
@@ -134,34 +160,25 @@ CREATE TABLE Trip_Joiners (
     FOREIGN KEY (Student_ID) REFERENCES User(Student_ID) ON DELETE CASCADE,
     FOREIGN KEY (Trip_ID) REFERENCES Trips(Trip_ID) ON DELETE CASCADE
 );
--- >>>>>>>>>>>>>>>>>>>>>>
--- Trip history experiment values
--- >>>>>>>>>>>>>>>>>>>>>>
---Imtiaz (23101137) created Trip_ID '123'
--- Let's make Ezio and Geralt join that trip
--- INSERT INTO Trip_Joiners VALUES
--- ('23102352', '123'),  -- Ezio joined Imtiaz's trip
--- ('23102621', '123');  -- Geralt joined Imtiaz's trip
 
--- Ezio (23102352) created Trip_ID '124'
--- Let's make Imtiaz join that trip
--- INSERT INTO Trip_Joiners VALUES
--- ('23101137', '124');  -- Imtiaz joined Ezio's trip
+-- ======================
+-- Trip Joiners (using the trip variables)
+-- ======================
 
--- Geralt (23102621) created Trip_ID '125'
--- Let's make Imtiaz and Razor join that trip
--- INSERT INTO Trip_Joiners VALUES
--- ('23101137', '125'),
--- ('23109200', '125');
+-- Imtiaz joins Ezio's trip
+INSERT INTO Trip_Joiners (Student_ID, Trip_ID)
+VALUES ('23101137', @TripID3);
 
--- Add another trip for Razeen
--- INSERT INTO Trips VALUES
--- ("128", "23101126", "Badda", 3, "10:30", "2023-11-15", 45.00, "Star Kabab", "BIKE", "Available", "Gulshan", 2);
+-- Imtiaz joins Geralt’s trip
+INSERT INTO Trip_Joiners (Student_ID, Trip_ID)
+VALUES ('23101137', @TripID4);
 
--- Let Imtiaz join that too
--- INSERT INTO Trip_Joiners VALUES
--- ('23101137', '128');
--- 
+-- Ezio and Geralt join Imtiaz’s first trip
+INSERT INTO Trip_Joiners (Student_ID, Trip_ID)
+VALUES 
+('23102352', @TripID1),
+('23102621', @TripID1);
+
 
 -- ======================
 -- Trip Member Ratings
@@ -177,6 +194,54 @@ CREATE TABLE Trip_Member_Ratings (
     FOREIGN KEY (Rated_ID) REFERENCES User(Student_ID) ON DELETE CASCADE,
     FOREIGN KEY (Trip_ID) REFERENCES Trips(Trip_ID) ON DELETE CASCADE
 );
+
+-- Imtiaz rated Ezio in TripID3
+INSERT INTO Trip_Member_Ratings (Rater_ID, Rated_ID, Trip_ID, Rating_Score, Comment)
+VALUES ('23101137', '23102352', @TripID3, 5, 'Very punctual and polite');
+
+-- Imtiaz rated Geralt in TripID4
+INSERT INTO Trip_Member_Ratings (Rater_ID, Rated_ID, Trip_ID, Rating_Score, Comment)
+VALUES ('23101137', '23102621', @TripID4, 4, 'Smooth ride but slightly late');
+
+-- Ezio rated Imtiaz in TripID1
+INSERT INTO Trip_Member_Ratings (Rater_ID, Rated_ID, Trip_ID, Rating_Score, Comment)
+VALUES ('23102352', '23101137', @TripID1, 5, 'Friendly and cooperative');
+
+-- Geralt rated Imtiaz in TripID1
+INSERT INTO Trip_Member_Ratings (Rater_ID, Rated_ID, Trip_ID, Rating_Score, Comment)
+VALUES ('23102621', '23101137', @TripID1, 4, 'Good passenger, no complaints');
+
+-- Geralt rated Ezio in TripID1 (even though Ezio was a co-passenger)
+INSERT INTO Trip_Member_Ratings (Rater_ID, Rated_ID, Trip_ID, Rating_Score, Comment)
+VALUES ('23102621', '23102352', @TripID1, 3, 'Could be more communicative');
+
+-- ======================
+-- View for Reported_Trips
+-- ======================
+
+-- For fething the Trip_ID we are usinf this Query
+-- SELECT Trip_ID, Student_ID, Date FROM Trips;
+
+
+CREATE TABLE Reported_Trips (
+    Report_ID INT AUTO_INCREMENT PRIMARY KEY,
+    Trip_ID INT,
+    Reporter_ID VARCHAR(20),
+    Reason TEXT,
+    Status VARCHAR(20) DEFAULT 'Pending',
+    Report_Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (Trip_ID) REFERENCES Trips(Trip_ID) ON DELETE CASCADE,
+    FOREIGN KEY (Reporter_ID) REFERENCES User(Student_ID) ON DELETE CASCADE
+);
+
+INSERT INTO Reported_Trips (Trip_ID, Reporter_ID, Reason, Status)
+VALUES 
+(10001, '23102621', 'Passenger was talking loudly the entire trip.', 'Pending'),
+(10002, '23102352', 'Driver was 20 minutes late.', 'Pending'),
+(10003, '23101137', 'Rider did not follow the agreed route.', 'Resolved'),
+(10004, '23102352', 'Trip got cancelled at the last moment without notice.', 'Pending'),
+(10005, '23101126', 'Driver overcharged at the end of the ride.', 'Resolved');
+
 
 -- ======================
 -- View for Average Ratings
