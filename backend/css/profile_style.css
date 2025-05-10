@@ -9,7 +9,6 @@ body {
   justify-content: center;
 }
 
-/* Profile card styling */
 .profile-card {
   background: #ffffff;
   border-radius: 16px;
@@ -25,7 +24,6 @@ body {
   transform: translateY(-3px);
 }
 
-/* Title */
 .profile-title {
   font-weight: 700;
   font-size: 28px;
@@ -34,7 +32,6 @@ body {
   color: #2c3e50;
 }
 
-/* Info layout */
 .profile-info p {
   margin-bottom: 15px;
   font-size: 16px;
@@ -51,7 +48,6 @@ body {
   flex-basis: 40%;
 }
 
-/* Buttons */
 .btn {
   padding: 10px 22px;
   border-radius: 30px;
@@ -80,7 +76,23 @@ body {
   background-color: #c0392b;
 }
 
-/* Responsive */
+.star {
+  font-size: 24px;
+  margin-right: 2px;
+}
+
+.star.full {
+  color: gold;
+}
+
+.star.half {
+  color: goldenrod;
+}
+
+.star.empty {
+  color: lightgray;
+}
+
 @media (max-width: 600px) {
   .profile-card {
     padding: 25px;
@@ -101,7 +113,6 @@ body {
   }
 }
 
-/* Animation */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -112,3 +123,4 @@ body {
     transform: translateY(0);
   }
 }
+

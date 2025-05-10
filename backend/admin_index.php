@@ -98,9 +98,9 @@ $report_count = $report_count_row['reports'];
             Logout <i class="bi bi-box-arrow-right"></i>
         </a>
     </div>
-
+    
     <div class="row g-4">
-        <div class="col-md-3">
+        <div class="col-sm-6 col-lg-3">
             <div class="card card-stats bg-primary text-white h-100">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <div>
@@ -111,7 +111,8 @@ $report_count = $report_count_row['reports'];
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+
+        <div class="col-sm-6 col-lg-3">
             <div class="card card-stats bg-success text-white h-100">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <div>
@@ -122,7 +123,8 @@ $report_count = $report_count_row['reports'];
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+
+        <div class="col-sm-6 col-lg-3">
             <div class="card card-stats bg-info text-white h-100">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <div>
@@ -133,18 +135,36 @@ $report_count = $report_count_row['reports'];
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card card-stats bg-secondary text-white h-100">
-                <div class="card-body d-flex justify-content-between align-items-center">
-                    <div>
-                        <h6>Total Trips</h6>
-                        <h3><?= $trip_count ?></h3>
+
+        <div class="col-sm-6 col-lg-3">
+            <a href="view_all_trips.php" class="text-decoration-none">
+                <div class="card card-stats bg-secondary text-white h-100">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6>Total Trips</h6>
+                            <h3><?= $trip_count ?></h3>
+                        </div>
+                        <i class="bi bi-car-front-fill card-icon"></i>
                     </div>
-                    <i class="bi bi-car-front-fill card-icon"></i>
                 </div>
-            </div>
+            </a>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+            <a href="view_all_reports.php" class="text-decoration-none">
+                <div class="card card-stats bg-danger text-white h-100">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6>Reports</h6>
+                            <h3><?= $report_count ?></h3>
+                        </div>
+                        <i class="bi bi-flag-fill card-icon"></i>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
+
 
     <div class="row mt-5 g-4">
         <div class="col-md-6">
@@ -153,8 +173,8 @@ $report_count = $report_count_row['reports'];
             </a>
         </div>
         <div class="col-md-6">
-            <a href="#" class="btn btn-outline-secondary w-100 action-btn disabled">
-                <i class="bi bi-map-fill me-2"></i> Manage Trips (Coming Soon)
+            <a href="manage_trips.php" class="btn btn-outline-secondary w-100 action-btn">
+                <i class="bi bi-map-fill me-2"></i> Manage Trips
             </a>
         </div>
     </div>
