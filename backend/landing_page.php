@@ -22,9 +22,36 @@
       integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
       crossorigin="anonymous"
     />
+  
 
     <link rel="stylesheet" href="css/landing_style.css" />
   </head>
+    <style>
+      .profile_pic_tawfiq {
+  clip-path: circle(40% at 53% 40%);
+  height: 300px;
+}
+.profile_pic_razeen {
+  clip-path: circle(37% at 53% 40%);
+  height: 300px;
+}
+.profile_pic_imtiaz {
+  clip-path: circle(37% at 50% 40%);
+  height: 300px;
+}
+i {
+  font-size: 2rem;
+
+  padding: 0 10px;
+}
+.our_goal {
+  font-family: "Montserrat";
+  font-weight: 300;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding: 0 10%;
+}
+    </style>
 
   <body>
     <section id="title" class="vh-100">
@@ -46,7 +73,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Contact</a>
+                <a class="nav-link" aria-current="page" href="#about_jump">About Us</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">History</a>
@@ -74,7 +101,7 @@
           
             <div class="row mt-5">
               <div class="col-3 text-center">
-              <a href="../frontend/post_trip.php" target="_blank">
+              <a href="../frontend/post_trip.php" >
               <button type="button" class="btn btn-light btn-lg border-dark">
             <i class="fa-solid fa-plus"></i>
               Post Trip
@@ -82,7 +109,7 @@
             </a>
             </div>
             <div class="col-3 text-center">
-              <a href="../Razeen_Experiment/trip_browse.php" target="_blank">
+              <a href="../Razeen_Experiment/trip_browse.php" >
             <button type="button" class="btn btn-light btn-lg border-dark">
             
             <i class="fa-solid fa-arrow-right-to-bracket"></i>
@@ -91,10 +118,10 @@
             </a>
             </div>
             <div class="col-3 text-center">
-            <a href="../frontend/add_vehicle.php" target="_blank">
+            <a href="../frontend/add_vehicle.php" >
             <button type="button" class="btn btn-light btn-lg border-dark">
             <i class="fa-solid fa-car"></i>
-              Add Vehicle
+              Private Vehicle
             </button>
             </a>
             </div>
@@ -107,12 +134,67 @@
             </a>
             </div>
             </div>
-           
+        </div>   
         
       
     </section>
 
+   <!-- Features -->
 
+     <section id="features" >
+      <div class="container text-center">
+        <h1 class="fw-bold mb-5 mt-5" id="about_jump">About US</h1>
+        <div class="row">
+          <div class="col-4">
+          <img src="../frontend/images/razeen.jpg" class="profile_pic_razeen" alt="razeen's image">
+            
+            <h3 class="fw-bold">Razeen Hassan</h3>
+            <p>Worked on Backend and Join Trip Feature</p>
+            <a href="https://www.facebook.com/razeon101" target="_blank">
+            <button type="button" class="btn btn-outline-info">
+            <i class="fa-brands fa-facebook"></i>
+            </button>
+            </a>
+          </div>
+
+          <div class="col-4">
+          <img src="../frontend/images/tawfiq.jpg" class="profile_pic_tawfiq" alt="tawfiq's image">
+            <h3 class="fw-bold">Tawfiqur Rahman</h3>
+            <p>Worked on Frontend and Post Trip, Add Vehicle Features</p>
+            <a href="https://www.facebook.com/tawfiqur.rahman.581491" target="_blank">
+            <button type="button" class="btn btn-outline-info">
+            <i class="fa-brands fa-facebook"></i>
+            </button> 
+            </a>
+          </div>
+
+          <div class="col-4 p-0">
+          <img src="../frontend/images/imtiaz.jpg" class="profile_pic_imtiaz p-0 m-0" alt="imatiaz's image">
+            <h3 class="fw-bold">Imtiaz Hossain</h3>
+            <p >Worked on Backend and User registration</p>
+            <a href="https://www.facebook.com/imtiaz.hossain.96930013" target="_blank">
+            <button type="button" class="btn btn-outline-info">
+            <i class="fa-brands fa-facebook"></i>
+            </button>
+            </a>
+          </div>
+        </div>
+        <div class="our_goal mt-5">
+        <h2 class="fw-bold " >Our Goal</h2>
+        <p>Our goal is to create a safe, easy, and efficient ride-sharing platform exclusively for BRAC University students.
+        We aim to connect students traveling between home and university, reduce travel costs, and promote a stronger community through shared trips.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-light text-muted mt-5">
+      <div class="text-center p-4" style="background-color: #e3f2fd">
+        © 2023 Copyright:
+        <a class="text-reset fw-bold" href="#">CHOLO</a>
+      </div>
+    </footer>
 
     <!-- Footer -->
 

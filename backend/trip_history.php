@@ -45,8 +45,50 @@ $joinedTripsResult = mysqli_query($conn, $joinedTripsQuery);
     <title>Trip History</title>
     <link rel="stylesheet" href="css/trip_history.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+      crossorigin="anonymous"
+    />
+    <style>
+        body {
+  background-image: linear-gradient(220deg, #fbe4d6 0%, #8fd3f4);
+  background-attachment: fixed;
+}
+    </style>
 </head>
 <body>
+    <!-- navbar -->
+     <div class=" ps-3 pe-3">
+     <nav class="navbar navbar-expand-lg">
+          <a class="navbar-brand fw-bolder fs-3" href="../backend/landing_page.php" style="color:white; margin-left: 4rem;">CHOLO</a>
+          <button
+            class="navbar-toggler bg-light"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon rounded"></span>
+          </button>
+          <div class="collapse navbar-collapse me-3" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-lg-0 ms-auto  ">
+              <li class="nav-item pe-4 fs-5 fw-bold ">
+                <a class="nav-link " aria-current="page" href="../backend/landing_page.php">Home</a>
+              </li>
+              <li class="nav-item pe-4 fs-5 fw-bold">
+                <a class="nav-link " href="../backend/trip_history.php">History</a>
+              </li>
+              <li class="nav-item pe-4 fs-5 fw-bold">
+                <a class="nav-link " href="../backend/profile.php">Profile</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        </div>
 
 <h1><i class="fas fa-route"></i> Trip History</h1>
 
@@ -104,6 +146,10 @@ $joinedTripsResult = mysqli_query($conn, $joinedTripsQuery);
             </div>
     <?php } } ?>
 </div>
-
+<script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
 </body>
 </html>

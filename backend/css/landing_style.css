@@ -38,3 +38,27 @@ h1 {
 .title-image {
   width: 60%;
 }
+.profile_pic_tawfiq {
+  clip-path: circle(40% at 53% 40%);
+  height: 300px;
+}
+.profile_pic_razeen {
+  clip-path: circle(37% at 53% 40%);
+  height: 300px;
+}
+.profile_pic_imtiaz {
+  clip-path: circle(37% at 50% 40%);
+  height: 300px;
+}
+i {
+  font-size: 2rem;
+
+  padding: 0 10px;
+}
+.our_goal {
+  font-family: "Montserrat";
+  font-weight: 300;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding: 0 10%;
+}
