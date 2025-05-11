@@ -76,7 +76,8 @@ i {
                 <a class="nav-link" aria-current="page" href="#about_jump">About Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">History</a>
+                
+                <a class="nav-link" href="logout.php">Log Out</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="profile.php">Profile</a>
@@ -103,7 +104,7 @@ i {
               <div class="col-3 text-center">
               <a href="../frontend/post_trip.php" >
               <button type="button" class="btn btn-light btn-lg border-dark">
-            <i class="fa-solid fa-plus"></i>
+            <i class="fa-solid fa-plus fa-lg"></i>
               Post Trip
             </button>
             </a>
@@ -112,15 +113,15 @@ i {
               <a href="../Razeen_Experiment/trip_browse.php" >
             <button type="button" class="btn btn-light btn-lg border-dark">
             
-            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            <i class="fa-solid fa-arrow-right-to-bracket fa-lg"></i>
             Join Trip
             </button>
             </a>
             </div>
             <div class="col-3 text-center">
-            <a href="../frontend/add_vehicle.php" >
+            <a href="../frontend/vehicle_list.php" >
             <button type="button" class="btn btn-light btn-lg border-dark">
-            <i class="fa-solid fa-car"></i>
+            <i class="fa-solid fa-car fa-lg"></i>
               Private Vehicle
             </button>
             </a>
@@ -128,7 +129,7 @@ i {
             <div class="col-3 text-center">
             <a href="trip_history.php">
               <button class="btn btn-dark btn-lg" type="button">
-                <i class="fa-solid fa-clock-rotate-left"></i>
+                <i class="fa-solid fa-clock-rotate-left fa-lg"></i>
                 Trip History
               </button>
             </a>

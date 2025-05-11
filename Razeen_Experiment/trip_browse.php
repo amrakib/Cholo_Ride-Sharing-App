@@ -60,7 +60,7 @@ $all_locs = $conn->query($location_value_fetch);
                 <a class="nav-link " aria-current="page" href="../backend/landing_page.php">Home</a>
               </li>
               <li class="nav-item pe-4 fs-5 fw-bold">
-                <a class="nav-link " href="../backend/trip_history.php">History</a>
+                <a class="nav-link " href="../backend/logout.php">Log Out</a>
               </li>
               <li class="nav-item pe-4 fs-5 fw-bold">
                 <a class="nav-link " href="../backend/profile.php">Profile</a>
