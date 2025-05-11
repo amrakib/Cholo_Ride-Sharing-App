@@ -77,6 +77,7 @@ while ($row = $result->fetch_assoc()) {
                     <th>License Number</th>
                     <th>Type</th>
                     <th>Capacity</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -87,6 +88,11 @@ while ($row = $result->fetch_assoc()) {
                         <td><?= htmlspecialchars($v['License_Number']) ?></td>
                         <td><?= htmlspecialchars($v['Vehicle_Type']) ?></td>
                         <td><?= htmlspecialchars($v['Capacity']) ?></td>
+                        <td><form method="POST" action="delete_vehicle.php" onsubmit="return confirm('Are you sure you want to delete this vehicle?');">
+                            <input type="hidden" name="vehicle_number" value="<?= htmlspecialchars($v['Vehicle_Number'])?> ">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
                     </tr>
                 <?php endforeach ?>
             </tbody>
