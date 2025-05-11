@@ -2,7 +2,7 @@
 session_start();
 include 'db_connection.php';
 
-if (!isset($_SESSION["User_ID"])) {
+if (!isset($_SESSION["User_ID"])){
   header("Location: index.php");
   exit();
 }
@@ -15,9 +15,10 @@ $stmt->bind_param("s", $student_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
-if ($result->num_rows === 1) {
+if ($result->num_rows === 1){
     $user = $result->fetch_assoc();
-} else {
+} 
+else{
     echo "User not found.";
     exit();
 }
@@ -31,26 +32,27 @@ $stmt_rating->execute();
 $result_rating = $stmt_rating->get_result();
 $average_rating = $result_rating->fetch_assoc()['Average_Rating'] ?? 0;
 
-function displayStars($rating) {
+function displayStars($rating){
     $stars = '';
     $fullStars = floor($rating);
     $halfStar = ($rating - $fullStars >= 0.5) ? 1 : 0;
     $emptyStars = 5 - $fullStars - $halfStar;
 
-    for ($i = 0; $i < $fullStars; $i++) {
+    for ($i = 0; $i < $fullStars; $i++){
         $stars .= '<i class="fa-solid fa-star text-warning"></i>';
     }
 
-    if ($halfStar) {
+    if ($halfStar){
         $stars .= '<i class="fa-solid fa-star-half-stroke text-warning"></i>';
     }
 
-    for ($i = 0; $i < $emptyStars; $i++) {
+    for ($i = 0; $i < $emptyStars; $i++){
         $stars .= '<i class="fa-regular fa-star text-muted"></i>';
     }
 
     return $stars;
 }
+
 ?>
 
 <!DOCTYPE html>

@@ -6,7 +6,7 @@ $database = "database_schema";
 
 $conn = new mysqli($servername, $username, $password, $database);
 
-if ($conn->connect_error) {
+if ($conn->connect_error){
   die("Connection failed: " . $conn->connect_error);
 }
 
@@ -46,7 +46,7 @@ $sql = "INSERT INTO User (Student_ID, Name, Gsuite_Email, Semester, Department, 
 VALUES (?, ?, ?, ?, ?, NULL, ?, ?, ?, ?, ?)";
 
 $stmt = $conn->prepare($sql);
-if (!$stmt) {
+if (!$stmt){
     die("Prepare failed: " . $conn->error);
 }
 
@@ -66,10 +66,13 @@ $stmt->bind_param(
 
 if ($stmt->execute()) {
     echo "✅ Registration successful!";
-} else {
+} 
+
+else {
     echo "❌ Error: " . $stmt->error;
 }
 
 $stmt->close();
 $conn->close();
+
 ?>
