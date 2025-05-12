@@ -1,3 +1,25 @@
+<?php
+include 'db_connection.php';
+session_start();
+
+if (!isset($_SESSION['User_ID'])){
+    header("Location: login.php");
+    exit();
+}
+
+$user_id = intval($_SESSION['User_ID']);
+
+$stmt = $conn->prepare("SELECT COUNT(*) AS unread_count FROM Notifications WHERE User_ID = ? AND Status = 'Unread'");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+
+$result = $stmt->get_result();
+$notif_data = $result->fetch_assoc();
+$unread = $notif_data['unread_count'];
+
+$stmt->close();
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -72,6 +94,16 @@ i {
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
+              <li class="nav-item">
+                <a class="nav-link position-relative" href="notifications.php">
+                  <i class="fa-solid fa-bell" style="color: white;"></i>
+                  <?php if ($unread > 0): ?>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      <?= $unread ?>
+                    </span>
+                  <?php endif; ?>
+                </a>
+              </li>
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="#about_jump">About Us</a>
               </li>
@@ -192,7 +224,7 @@ i {
     <!-- Footer -->
     <footer class="text-center text-lg-start bg-light text-muted mt-5">
       <div class="text-center p-4" style="background-color: #e3f2fd">
-        © 2023 Copyright:
+        © 2025 Copyright:
         <a class="text-reset fw-bold" href="#">CHOLO</a>
       </div>
     </footer>

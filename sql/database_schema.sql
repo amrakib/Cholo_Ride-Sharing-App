@@ -12,7 +12,8 @@ CREATE TABLE User (
     Phone_Number VARCHAR(15), -- updated
     Password VARCHAR(100) NOT NULL,
     Address VARCHAR(255),     -- added Address
-    Gender VARCHAR(10)       -- added Gender
+    Gender VARCHAR(10),       -- added Gender
+    Profile_Pic VARCHAR(255) -- added Profile_Pic
 );
 
 -- ======================
@@ -237,10 +238,20 @@ CREATE TABLE Reported_Trips (
 INSERT INTO Reported_Trips (Trip_ID, Reporter_ID, Reason, Status)
 VALUES 
 (10001, '23102621', 'Passenger was talking loudly the entire trip.', 'Pending'),
-(10002, '23102352', 'Driver was 20 minutes late.', 'Pending'),
-(10003, '23101137', 'Rider did not follow the agreed route.', 'Resolved'),
+(10002, '23102352', 'Driver was 20 minutes late.', 'Resolved'),
+(10003, '23101137', 'Rider did not follow the agreed route.', 'Pending'),
 (10004, '23102352', 'Trip got cancelled at the last moment without notice.', 'Pending'),
 (10005, '23101126', 'Driver overcharged at the end of the ride.', 'Resolved');
+
+
+CREATE TABLE Notifications (
+    Notification_ID INT AUTO_INCREMENT PRIMARY KEY,
+    User_ID VARCHAR(20),
+    Message TEXT,
+    Status ENUM('Unread', 'Read') DEFAULT 'Unread',
+    Created_At DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (User_ID) REFERENCES User(Student_ID)
+);
 
 
 -- ======================

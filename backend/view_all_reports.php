@@ -2,7 +2,7 @@
 include 'db_connection.php';
 session_start();
 
-if (!isset($_SESSION['admin'])) {
+if (!isset($_SESSION['admin'])){
     header("Location: manage_users.php");
     exit();
 }
@@ -92,6 +92,13 @@ $result = mysqli_query($conn, $query);
                                 <span class="badge bg-<?= $row['Status'] === 'Pending' ? 'warning' : 'success' ?>">
                                     <?= $row['Status'] ?>
                                 </span>
+                            </td>
+                            <td>
+                            <?php if ($row['Status'] === 'Pending'): ?>
+                                <a href="send_notification.php?trip_id=<?= $row['Trip_ID'] ?>" class="btn btn-sm btn-primary">Take Action</a>
+                            <?php else: ?>
+                                <span class="text-muted">Resolved</span>
+                            <?php endif; ?>
                             </td>
                         </tr>
                     <?php endwhile; ?>

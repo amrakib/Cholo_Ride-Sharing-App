@@ -2,14 +2,29 @@
 session_start();
 include 'db_connection.php';
 
-if (!isset($_SESSION["User_ID"])) {
+if (!isset($_SESSION["User_ID"])){
   header("Location: index.php");
   exit();
 }
 
 $student_id = $_SESSION["User_ID"];
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+$sql = "SELECT * FROM User WHERE Student_ID = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $student_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows === 1){
+    $user = $result->fetch_assoc();
+} 
+
+else {
+    echo "User not found.";
+    exit();
+}
+
+if ($_SERVER["REQUEST_METHOD"] === "POST"){
   $name = $_POST['name'];
   $email = $_POST['email'];
   $phone = $_POST['phone'];
@@ -18,33 +33,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $semester = $_POST['semester'];
   $address = $_POST['address'];
   $thana = $_POST['thana'];
+  $profile_pic_path = $user['Profile_Pic'];
 
-  $sql = "UPDATE User SET Name = ?, Gsuite_Email = ?, Phone_Number = ?, Gender = ?, Department = ?, Semester = ?, Address = ?, Thana = ? WHERE Student_ID = ?";
+  if (isset($_FILES['Profile_Pic']) && $_FILES['Profile_Pic']['error'] === 0){
+      $uploadDir = "profile_pic/";
+      if (!is_dir($uploadDir)){
+          mkdir($uploadDir, 0777, true);
+      }
+      $fileName = basename($_FILES["Profile_Pic"]["name"]);
+      $profile_pic_path = $uploadDir . time() . "_" . $fileName;
+      move_uploaded_file($_FILES["Profile_Pic"]["tmp_name"], $profile_pic_path);
+  }
+
+
+  $sql = "UPDATE User SET Name = ?, Gsuite_Email = ?, Phone_Number = ?, Gender = ?, Department = ?, Semester = ?, Address = ?, Thana = ?, Profile_Pic = ? WHERE Student_ID = ?";
   $stmt = $conn->prepare($sql);
-  $stmt->bind_param("sssssssss", $name, $email, $phone, $gender, $department, $semester, $address, $thana, $student_id);
+  $stmt->bind_param("ssssssssss", $name, $email, $phone, $gender, $department, $semester, $address, $thana, $profile_pic_path, $student_id);
+
   $stmt->execute();
 
-  if ($stmt->affected_rows > 0) {
+  if ($stmt->affected_rows > 0){
     $success_msg = "Profile updated successfully.";
-  } else {
+  } 
+  
+  else{
     $error_msg = "Error updating profile. Please try again.";
   }
 }
 
-// Here I am Fetching  the user's current information
-
-$sql = "SELECT * FROM User WHERE Student_ID = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $student_id);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows === 1) {
-    $user = $result->fetch_assoc();
-} else {
-    echo "User not found.";
-    exit();
-}
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +86,7 @@ if ($result->num_rows === 1) {
       </div>
     <?php endif; ?>
 
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
         <input type="text" id="name" name="name" class="form-control" value="<?php echo htmlspecialchars($user['Name']); ?>" required>
@@ -115,10 +131,16 @@ if ($result->num_rows === 1) {
         <input type="text" id="thana" name="thana" class="form-control" value="<?php echo htmlspecialchars($user['Thana']); ?>" required>
       </div>
 
+      <div class="mb-3">
+        <label for="profile_pic" class="form-label">Profile Picture</label>
+        <input type="file" id="Profile_pic" name="Profile_Pic" class="form-control">
+      </div>
+
       <div class="text-center mt-4">
         <button type="submit" class="btn btn-primary">Update Profile</button>
         <a href="profile.php" class="btn btn-secondary">Back to Profile</a>
       </div>
+
     </form>
   </div>
 
