@@ -2,7 +2,7 @@
 include 'db_connection.php';
 session_start();
 
-if (!isset($_SESSION['admin'])) {
+if (!isset($_SESSION['admin'])){
     header("Location: admin_index.php");
     exit();
 }
@@ -12,8 +12,8 @@ $query = "SELECT t.Trip_ID, t.Student_ID, u.Name AS Student_Name, t.where_loc, t
           JOIN User u ON t.Student_ID = u.Student_ID";
 $result = mysqli_query($conn, $query);
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['update_trip'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if (isset($_POST['update_trip'])){
         $trip_id = mysqli_real_escape_string($conn, $_POST['trip_id']);
         $status = mysqli_real_escape_string($conn, $_POST['status']);
         $capacity = mysqli_real_escape_string($conn, $_POST['capacity']);
@@ -22,9 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                          SET trip_status = '$status', Capacity = $capacity 
                          WHERE Trip_ID = $trip_id";
                          
-        if (mysqli_query($conn, $update_query)) {
+        if (mysqli_query($conn, $update_query)){
             echo "<div class='alert alert-success'>Trip updated successfully.</div>";
-        } else {
+        } 
+        
+        else{
             echo "<div class='alert alert-danger'>Error updating trip: " . mysqli_error($conn) . "</div>";
         }
     }
