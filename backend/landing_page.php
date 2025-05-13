@@ -96,7 +96,7 @@ i {
             <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
               <li class="nav-item">
                 <a class="nav-link position-relative" href="notifications.php">
-                  <i class="fa-solid fa-bell" style="color: white;"></i>
+                  <i class="fa-solid fa-bell" style="color: #6C63FF;"></i>
                   <?php if ($unread > 0): ?>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                       <?= $unread ?>
