@@ -33,7 +33,7 @@ h1 {
 }
 .container-fluid {
   padding: 3% 10%;
-  overflow: hidden;
+  
 }
 .title-image {
   width: 60%;
@@ -61,4 +61,62 @@ i {
   font-size: 1.5rem;
   line-height: 1.5;
   padding: 0 10%;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 120px; /* Prevents overlap with About Us */
+}
+
+.action-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 2px solid black;
+  border-radius: 8px;
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.action-button:hover {
+  background-color: #f0f0f0;
+}
+
+.about-title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+.about-section {
+  text-align: center;
+}
+
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+#features {
+  color: #000;
+  background-color: #fff;
+}
+
+.our_goal p {
+  color: #000;
+}
+
+#features {
+  color: #000;
+  background-color: #fff;
+}
+
+.our_goal p {
+  color: #000;
 }
