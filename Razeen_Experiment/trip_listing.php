@@ -80,7 +80,7 @@ if (!isset($_SESSION["User_ID"])) {
 
 <?php
             
-        $fetch_query="SELECT * FROM Trips WHERE trip_status='Available'";
+        $fetch_query="SELECT * FROM Trips WHERE trip_status='Available' AND Student_ID!=\"".$_SESSION["User_ID"]."\"";
         $where_criteria=" AND where_loc='".$_SESSION["join_from"]."'";
         $to_criteria=" AND to_loc='".$_SESSION["join_to"]."'";
         if ($_SESSION["join_type"]!="Any")

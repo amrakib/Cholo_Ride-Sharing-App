@@ -46,6 +46,7 @@ $phone      = clean_input($_POST['phone']);
 $password   = password_hash($_POST['password'], PASSWORD_DEFAULT);
 $address    = clean_input($_POST['address']);
 $gender     = clean_input($_POST['gender']);
+$userStatus = "Available";
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
     die("Invalid email format.");
@@ -79,8 +80,8 @@ if (isset($_FILES['scanned_id']) && $_FILES['scanned_id']['error'] === 0){
 // SQL Insert with Prepared Statement
 // =======================
 
-$sql = "INSERT INTO User (Student_ID, Name, Gsuite_Email, Semester, Department, Thana, Phone_Number, Password, Address, Gender, profile_pic, Scanned_ID)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO User (Student_ID, Name, Gsuite_Email, Semester, Department, Thana, Phone_Number, Password, Address, Gender, profile_pic, Scanned_ID,UserStatus)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,'Available')";
 
 $stmt = $conn->prepare($sql);
 if (!$stmt) {

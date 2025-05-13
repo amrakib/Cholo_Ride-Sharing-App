@@ -41,6 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     trip_status, to_loc, Used_capacity) 
             VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?)";
 
+    $update="UPDATE User SET UserStatus='Rider'  WHERE Student_ID=\"".$_SESSION["User_ID"]."\"";
+    $result=mysqli_query($conn, $update);
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssissdssssi", $student_id, $where_loc, $capacity, $time, $date, $fare, $meet_up, $mode_of_commute, $trip_status, $to_loc, $Used_capacity);
      

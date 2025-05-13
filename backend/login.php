@@ -4,13 +4,13 @@ include 'db_connection.php';
 
 // ===== Hardcoded Users for Testing =====
 $hardcoded_users = [
-    'tawfiq@gmail.com' => ['password' => '123tawfiq', 'name' => 'Tawfiq', 'student_id' => '23101125', 'thana' => 'Mirpur'],
-    'Imtiaz@gmail.com' => ['password' => '123tawfiq', 'name' => 'Imtiaz', 'student_id' => '23101137', 'thana' => 'Mirpur'],
-    'Ezio@gmail.com' => ['password' => '123tawfiq', 'name' => 'Ezio', 'student_id' => '23102352', 'thana' => 'Mirpur'],
-    'Geralt@gmail.com' => ['password' => '123tawfiq', 'name' => 'Geralt', 'student_id' => '23102621', 'thana' => 'Mirpur'],
-    'Desmond@gmail.com' => ['password' => '123tawfiq', 'name' => 'Desmond', 'student_id' => '23101621', 'thana' => 'Mirpur'],
-    'Razor@gmail.com' => ['password' => '123tawfiq', 'name' => 'Razor', 'student_id' => '23109200', 'thana' => 'Mirpur'],
-    'razeen@gmail.com' => ['password' => '123razeen', 'name' => 'Razeen', 'student_id' => '23101126', 'thana' => 'Banani']
+    'tawfiq@gmail.com' => ['password' => '123tawfiq', 'name' => 'Tawfiq', 'student_id' => '23101125', 'thana' => 'Mirpur', 'UserStatus' => 'Available' ],
+    'Imtiaz@gmail.com' => ['password' => '123tawfiq', 'name' => 'Imtiaz', 'student_id' => '23101137', 'thana' => 'Mirpur', 'UserStatus' => 'Available'],
+    'Ezio@gmail.com' => ['password' => '123tawfiq', 'name' => 'Ezio', 'student_id' => '23102352', 'thana' => 'Mirpur', 'UserStatus' => 'Available'],
+    'Geralt@gmail.com' => ['password' => '123tawfiq', 'name' => 'Geralt', 'student_id' => '23102621', 'thana' => 'Mirpur', 'UserStatus' => 'Available'],
+    'Desmond@gmail.com' => ['password' => '123tawfiq', 'name' => 'Desmond', 'student_id' => '23101621', 'thana' => 'Mirpur', 'UserStatus' => 'Available'],
+    'Razor@gmail.com' => ['password' => '123tawfiq', 'name' => 'Razor', 'student_id' => '23109200', 'thana' => 'Mirpur', 'UserStatus' => 'Available'],
+    'razeen@gmail.com' => ['password' => '123razeen', 'name' => 'Razeen', 'student_id' => '23101126', 'thana' => 'Banani', 'UserStatus' => 'Available']
 ];
 
 

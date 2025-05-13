@@ -13,7 +13,8 @@ CREATE TABLE User (
     Password VARCHAR(100) NOT NULL,
     Address VARCHAR(255),     -- added Address
     Gender VARCHAR(10),       -- added Gender
-    Profile_Pic VARCHAR(255) -- added Profile_Pic
+    Profile_Pic VARCHAR(255), -- added Profile_Pic
+    UserStatus VARCHAR(30)
 );
 
 -- ======================
@@ -155,11 +156,13 @@ SET @TripID4 = LAST_INSERT_ID();
 -- Trip Joiners
 -- ======================
 CREATE TABLE Trip_Joiners (
+    Trip_Leader_ID VARCHAR(30),
     Student_ID VARCHAR(20),
     Trip_ID INT,
-    PRIMARY KEY (Student_ID, Trip_ID),
+    PRIMARY KEY (Trip_Leader_ID,Student_ID, Trip_ID),
     FOREIGN KEY (Student_ID) REFERENCES User(Student_ID) ON DELETE CASCADE,
-    FOREIGN KEY (Trip_ID) REFERENCES Trips(Trip_ID) ON DELETE CASCADE
+    FOREIGN KEY (Trip_ID) REFERENCES Trips(Trip_ID) ON DELETE CASCADE,
+    FOREIGN KEY (Trip_Leader_ID) REFERENCES User(Student_ID) ON DELETE CASCADE
 );
 
 -- ======================
@@ -167,18 +170,18 @@ CREATE TABLE Trip_Joiners (
 -- ======================
 
 -- Imtiaz joins Ezio's trip
-INSERT INTO Trip_Joiners (Student_ID, Trip_ID)
-VALUES ('23101137', @TripID3);
+-- INSERT INTO Trip_Joiners (Student_ID, Trip_ID)
+-- VALUES ('23101137', @TripID3);
 
 -- Imtiaz joins Geralt’s trip
-INSERT INTO Trip_Joiners (Student_ID, Trip_ID)
-VALUES ('23101137', @TripID4);
+-- INSERT INTO Trip_Joiners (Student_ID, Trip_ID)
+-- VALUES ('23101137', @TripID4);
 
 -- Ezio and Geralt join Imtiaz’s first trip
-INSERT INTO Trip_Joiners (Student_ID, Trip_ID)
-VALUES 
-('23102352', @TripID1),
-('23102621', @TripID1);
+-- INSERT INTO Trip_Joiners (Student_ID, Trip_ID)
+-- VALUES 
+-- ('23102352', @TripID1),
+-- ('23102621', @TripID1);
 
 
 -- ======================

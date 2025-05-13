@@ -3,11 +3,12 @@ session_start();
 include "../backend/db_connection.php"
 ?>
 
+
 <?php
-// echo $_POST["trip_choice"];
+$UserInfo="SELECT * FROM User where Student_ID=\"".$_SESSION["User_ID"]."\"";
+$Ufetched_data=mysqli_query($conn, $UserInfo);
+$UserData = $Ufetched_data->fetch_all(MYSQLI_ASSOC);
 ?>
-
-
 
 
 
@@ -63,28 +64,97 @@ include "../backend/db_connection.php"
           </div>
         </nav>
         </div>
-
+<?php
+$TripInfoQuery="SELECT* FROM Trips AS T INNER JOIN User AS U ON T.Student_ID=U.Student_ID where T.Trip_ID=\"".$_POST["trip_choice"]."\"";
+$fetched_data=mysqli_query($conn, $TripInfoQuery);
+$count=mysqli_num_rows( $fetched_data );
+$data = $fetched_data->fetch_all(MYSQLI_ASSOC);
+?>
 
     <div class="container mt-5 ">
         <div class="row">
             <div class="col bg-light rounded-3 shadow-sm p-4 m-2">
                 <h2 class="text-center">Trip Information</h2>
-                    <p class="card-text fw-bold">Trip ID: <?php echo $_POST["trip_choice"]; ?></p>
-                   
-
+                    <p class="card-text fw-bold">Trip Leader: <?php echo $data[0]["Name"] ?></p>
+                    <p class="card-text fw-bold">Leader Phone: <?php echo $data[0]["Phone_Number"]; ?></p>
+                    <p class="card-text fw-bold">Route: <?php echo $data[0]["where_loc"];  ?> -> <?php echo $data[0]["to_loc"];  ?></p>
+                    <p class="card-text fw-bold">Date: <?php echo $data[0]["Date"]; ?></p>
+                    <p class="card-text fw-bold">Time: <?php echo $data[0]["Time"]; ?></p>
+                    <p class="card-text fw-bold">Fare: <?php echo $data[0]["Fare"]; ?> BDT</p>
+                    <p class="card-text fw-bold">Meetup Location: <?php echo $data[0]["Meet_up_location"]; ?></p>
+                    <p class="card-text fw-bold">Capacity Status: <?php echo $data[0]["Used_capacity"]; ?>/<?php echo $data[0]["Capacity"]; ?></p>
+                    <p class="card-text fw-bold">Vehicle Type: <?php echo $data[0]["Mode_of_Commute"]; ?></p>
             </div>
     <div class="col bg-light rounded-3 shadow-sm p-4 m-2">
-        
+<?php
+$TripJoinerQuery="SELECT * FROM Trip_Joiners AS T INNER JOIN User AS U ON T.Student_ID=U.Student_ID where Trip_ID=\"".$_POST["trip_choice"]."\"";
+$fetched_data1=mysqli_query($conn, $TripJoinerQuery);
+$count1=mysqli_num_rows( $fetched_data1 );
+$data2 = $fetched_data1->fetch_all(MYSQLI_ASSOC);
+$thisTripFlag=False;
+?>
+
       <h2 class="text-center" >Trip Joiners</h2>
-      <p class="card-text fw-bold">Trip ID: <?php echo $_POST["trip_choice"]; ?></p>
-     
+<?php 
+if ($count1==0)
+{
+ echo "<p>No One has joined the Trip</p>";
+}
+else
+{     
+      for ($i=0;$i<$count1;$i++)
+      {
+        echo "<p class=\"card-text fw-bold\">".$data2[$i]["Name"]." (".$data2[$i]["Student_ID"].")</p>";
+        if ($data2[$i]["Student_ID"]==$_SESSION["User_ID"])
+        {
+          $thisTripFlag=True;
+        }
+      }
+}
+
+?>
     </div>
     
   </div>
 </div>
-<form action="#" method="POST">
+<form action="joining_processing.php" method="POST">
+<?php
+    echo "<input type=\"hidden\" name=\"Trip_ID\" value=\"".$_POST["trip_choice"]."\">";
+    echo "<input type=\"hidden\" name=\"Leader_ID\" value=\"".$data[0]["Student_ID"]."\">";
+?>
 <div class="d-flex d-flex justify-content-center  flex-row mt-3 ">
-<button type="Submit" class="btn btn-outline-danger ">Join Trip</button>
+<?php if ($data[0]["Used_capacity"]==$data[0]["Capacity"]) { ?>
+      <button type="Submit" id="myButton" class="btn btn-outline-danger ">No Space Available</button>
+      <script>
+      const myButton = document.getElementById('myButton');
+      myButton.disabled = true;
+      </script>
+
+<?php } else if  ($UserData[0]["UserStatus"]=="Rider") {?>
+      <button type="Submit" id="myButton" class="btn btn-outline-danger ">You Have a Trip Created</button>
+      <script>
+      const myButton = document.getElementById('myButton');
+      myButton.disabled = true;
+      </script>
+<?php } else if  ($thisTripFlag==True) {?>
+      <button type="Submit" id="myButton" class="btn btn-outline-danger ">You Are Already in this Trip</button>
+      <script>
+      const myButton = document.getElementById('myButton');
+      myButton.disabled = true;
+      </script>
+<?php } else if  ($UserData[0]["UserStatus"]=="Passenger") {?>
+      <button type="Submit" id="myButton" class="btn btn-outline-danger ">You Are Part of Another Trip</button>
+      <script>
+      const myButton = document.getElementById('myButton');
+      myButton.disabled = true;
+      </script>
+<?php } else {?>
+
+      <button type="Submit" id="myButton" class="btn btn-outline-danger ">Join Trip</button>
+
+<?php }?>
+      
+
 </a>
 </div>
 </form>

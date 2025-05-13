@@ -82,7 +82,7 @@ $all_locs = $conn->query($location_value_fetch);
         
         <div class=" field ">
           <select class="form-select text-center selection-field" aria-label="Default select example" name="from_location">
-            <option selected>Where From</option>
+            <option value="x" disabled selected>Where From</option>
             <?php
             if ($all_locs->num_rows > 0) {
                 while ($row2 = $all_locs->fetch_assoc()) {
@@ -99,7 +99,7 @@ $all_locs = $conn->query($location_value_fetch);
         <!-- To Where -->
         <div class=" field mt-3 ">
           <select class="form-select text-center selection-field" aria-label="Default select example" name="towhere">
-            <option selected>Where To</option>
+            <option value="x" disabled selected>Where To</option>
             <?php
             $all_locs = $conn->query($location_value_fetch);
             if ($all_locs->num_rows > 0) {
@@ -125,13 +125,13 @@ $all_locs = $conn->query($location_value_fetch);
             placeholder="Time"
             name="time"
             placeholder="Starting Time"  
-          />
+          required>
         </div>
  
          <!-- Vehicle Type Selection -->
         <div class="mt-3 mb-3 field">
           <select class="form-select selection-field text-center" name="cartype">    <!-- This variable is not being passed (NEED FIXING) -->
-            <option value="Any">Select Vehicle Type</option>
+            <option value="Any">Any</option>
             <option value="Private">Private</option>
             <option value="Public">Public</option>
           </select>
