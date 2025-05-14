@@ -14,7 +14,9 @@ CREATE TABLE User (
     Address VARCHAR(255),     -- added Address
     Gender VARCHAR(10),       -- added Gender
     Profile_Pic VARCHAR(255), -- added Profile_Pic
-    UserStatus VARCHAR(30) NULL DEFAULT 'Available' -- added UserStatus
+    UserStatus VARCHAR(30) NULL DEFAULT 'Available', -- added UserStatus
+    Joined VARCHAR(30) NULL DEFAULT 'False',
+    Created VARCHAR(30) NULL DEFAULT 'False'
 );
 
 -- ======================
