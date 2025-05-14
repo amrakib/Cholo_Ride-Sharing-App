@@ -17,7 +17,6 @@ $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM User");
 $row = mysqli_fetch_assoc($result);
 $user_count = $row['total'];
 
-
 $male_result = mysqli_query($conn, "SELECT COUNT(*) AS males FROM User WHERE Gender='Male'");
 $female_result = mysqli_query($conn, "SELECT COUNT(*) AS females FROM User WHERE Gender='Female'");
 $male_count = mysqli_fetch_assoc($male_result)['males'];
@@ -177,6 +176,12 @@ $report_count = $report_count_row['reports'];
                 <i class="bi bi-map-fill me-2"></i> Manage Trips
             </a>
         </div>
+        <div class="col-md-6 mt-4">
+                <a href="add_admin.php" class="btn btn-outline-warning w-100 action-btn">
+        <i class="bi bi-person-plus-fill me-2"></i> Add Admin
+                </a>
+        </div>
+
     </div>
 
     <div class="footer-note text-center mt-5">

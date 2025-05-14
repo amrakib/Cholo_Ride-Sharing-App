@@ -63,7 +63,8 @@ if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] === 0){
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0777, true);
     }
-    $profile_pic_path = $uploadDir . basename($_FILES["profile_pic"]["name"]);
+    $extension = pathinfo($_FILES["profile_pic"]["name"], PATHINFO_EXTENSION);
+    $profile_pic_path = $uploadDir . $student_id . "_profile." . $extension;
     move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $profile_pic_path);
 }
 
@@ -72,9 +73,11 @@ if (isset($_FILES['scanned_id']) && $_FILES['scanned_id']['error'] === 0){
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0777, true);
     }
-    $scanned_id_path = $uploadDir . basename($_FILES["scanned_id"]["name"]);
+    $extension = pathinfo($_FILES["scanned_id"]["name"], PATHINFO_EXTENSION);
+    $scanned_id_path = $uploadDir . $student_id . "_id." . $extension;
     move_uploaded_file($_FILES["scanned_id"]["tmp_name"], $scanned_id_path);
 }
+
 
 // =======================
 // SQL Insert with Prepared Statement
