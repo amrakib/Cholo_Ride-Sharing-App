@@ -10,7 +10,7 @@ session_start();
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Cholo-Posting Trip</title>
+    <title>Add Vehicle</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
