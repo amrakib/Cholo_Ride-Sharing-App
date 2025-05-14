@@ -65,15 +65,55 @@ CREATE Table Locations (
 -- Location default values
 -- ======================
 INSERT INTO Locations VALUES
-("Dhanmondi"),
-("Gulshan"),
+("Brac University"),
+("Adabor"),
+("Agargaon"),
+("Azimpur"),
 ("Badda"),
-("Mohakhali"),
-("Uttara"),
-("Mirpur"),
+("Banani"),
+("Bangshal"),
+("Baridhara"),
+("Basabo"),
+("Bailey Road"),
+("Bashundhara"),
+("Cantonment"),
+("Chawkbazar"),
+("Demra"),
+("Dhanmondi"),
+("Gendaria"),
+("Gulshan"),
+("Hazaribagh"),
+("Jatrabari"),
+("Kafrul"),
+("Kalabagan"),
+("Kamrangirchar"),
+("Khilgaon"),
+("Khilkhet"),
+("Kollanpur"),
+("Kotwali"),
+("Lalbagh"),
 ("Lalmatia"),
-("Banani");
-
+("Mirpur 1"),
+("Mirpur 2"),
+("Mirpur 10"),
+("Mirpur 11"),
+("Mirpur 12"),
+("Mirpur 13"),
+("Mohakhali"),
+("Mohammadpur"),
+("Motijheel"),
+("Mugda"),
+("Nawabganj"),
+("Pallabi"),
+("Paltan"),
+("Ramna"),
+("Rampura"),
+("Shahbagh"),
+("Shahjahanpur"),
+("Tejgaon"),
+("Uttara"),
+("Wari"),
+("Zigatola");
 -- ======================
 -- Admin
 -- ======================
@@ -97,6 +137,7 @@ CREATE TABLE Trips (
     Capacity INT,
     Time TIME,
     Date DATE,
+    Vehicle_Info VARCHAR(50),
     Fare DECIMAL(5,2),
     Meet_up_location VARCHAR(100),
     Mode_of_Commute VARCHAR(30),
@@ -120,8 +161,8 @@ INSERT INTO Trips (
 -- ("23101137","Dhanmondi",5,"12:30","2018-05-02",50.55,"Abahani","Public","Available","Gulshan",5),
 ("23102352","Gulshan",5,"16:35","2022-05-03",24.55,"Abahani","Public","Available","Lalmatia",1),
 ("23102621","Mohakhali",5,"23:30","2025-09-02",61.55,"Abahani","Public","Available","Uttara",3),
-("23101126","Uttara",5,"07:30","2015-07-01",26.55,"Abahani","Public","Available","Mirpur",1),
-("23109200","Mirpur",5,"12:30","2002-01-20",88.55,"Abahani","Public","Available","Badda",3);
+("23101126","Uttara",5,"07:30","2015-07-01",26.55,"Abahani","Public","Available","Mirpur 1",1),
+("23109200","Mirpur 1",5,"12:30","2002-01-20",88.55,"Abahani","Public","Available","Badda",3);
 
 INSERT INTO Trips (Student_ID, where_loc, Capacity, Time, Date, Fare, Meet_up_location, Mode_of_Commute, trip_status, to_loc, Used_capacity)
 VALUES 
@@ -131,7 +172,7 @@ SET @TripID1 = LAST_INSERT_ID();
 
 INSERT INTO Trips (Student_ID, where_loc, Capacity, Time, Date, Fare, Meet_up_location, Mode_of_Commute, trip_status, to_loc, Used_capacity)
 VALUES 
-("23101137", "Mirpur", 4, "14:30", "2025-05-05", 60.00, "Mirpur 10", "Bike", "Available", "Badda", 2); -- Trip_ID = LAST_INSERT_ID() = @TripID2
+("23101137", "Mirpur 1", 4, "14:30", "2025-05-05", 60.00, "Mirpur 10", "Bike", "Available", "Badda", 2); -- Trip_ID = LAST_INSERT_ID() = @TripID2
 
 SET @TripID2 = LAST_INSERT_ID();
 

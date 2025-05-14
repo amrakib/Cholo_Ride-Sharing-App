@@ -11,11 +11,11 @@ $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     
-    echo '<select id="vehicleSelect" class="form-control selection-field text-center mb-3" onchange="setCapacity()">';
+    echo '<select id="vehicleSelect" class="form-control selection-field text-center mb-3" onchange="setCapacity()" name="vehicle_info">';
     echo '<option value="">-- Select a Vehicle --</option>';
     while ($row = $result->fetch_assoc()) {
         
-        echo '<option value="' . $row['vehicle_number'] . '" data-capacity="' . $row['capacity'] . '">' . $row['model_name'] . "(" . $row['vehicle_number'] . ")  </option>";
+        echo '<option value="' . $row['model_name'] . '(' . $row['vehicle_number'] . ')' . '" data-capacity="' . $row['capacity'] . '">' . $row['model_name'] . '(' . $row['vehicle_number'] . ')</option>';
     }
     echo '</select>';
     

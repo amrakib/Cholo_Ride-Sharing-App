@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $datetime = $_POST['time'];
     $date = date('Y-m-d', strtotime($datetime));
     $time = date('H:i:s', strtotime($datetime));
+    $vehicle_info=$_POST['vehicle_info'];
     $fare = $_POST['fare'];
     $meet_up = $_POST['Meet_up_location'];
     $mode_of_commute = $_POST['mode_commute'];
@@ -37,14 +38,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $Used_capacity = 0; // Initialize Used_capacity to 0
     
 
-    $sql = "INSERT INTO Trips (Student_ID, where_loc, Capacity, Time, Date,Fare, Meet_up_location, Mode_of_Commute,
+    $sql = "INSERT INTO Trips (Student_ID, where_loc, Capacity, Time, Date,
+    Vehicle_Info,Fare, Meet_up_location, Mode_of_Commute,
     trip_status, to_loc, Used_capacity) 
-            VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?)";
+            VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?,?, ?)";
 
     $update="UPDATE User SET UserStatus='Rider'  WHERE Student_ID=\"".$_SESSION["User_ID"]."\"";
     $result=mysqli_query($conn, $update);
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssissdssssi", $student_id, $where_loc, $capacity, $time, $date, $fare, $meet_up, $mode_of_commute, $trip_status, $to_loc, $Used_capacity);
+    $stmt->bind_param("ssisssdssssi", $student_id, $where_loc, $capacity, $time, $date, $vehicle_info ,$fare, $meet_up, $mode_of_commute, $trip_status, $to_loc, $Used_capacity);
      
     try {
         if ($stmt->execute()) {

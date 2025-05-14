@@ -6,6 +6,9 @@ session_start();
     header("Location: ../backend/index.php");
     exit();
   }
+$location_value_fetch = "SELECT * FROM Locations";
+$all_locs = $conn->query($location_value_fetch);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -83,25 +86,47 @@ session_start();
         <!-- From Where -->
         
         <div class=" field ">
-          <select class="form-select text-center selection-field" aria-label="Default select example" name="from_location">
-            <option selected>Where From</option>
-            <option value="Gulshan">Gulshan</option>
-            <option value="Dhanmondi">Dhanmondi</option>
-            <option value="Lalmatia">Lalmatia</option>
+          <select id="from" class="form-select text-center selection-field" aria-label="Default select example" name="from_location" onchange="checkLocations()" required>
+            <option selected disabled>Where From</option>
+            <?php
+            if ($all_locs->num_rows > 0) {
+                while ($row2 = $all_locs->fetch_assoc()) {
+                    $temp= "<option value=\"".$row2["area_locations"]."\"".">".$row2["area_locations"]."</option>";
+                    echo $temp;
+                }       
+            } else {
+            echo "<option value=\""."NoData"."\"".">"."No data"."</option>";
+            }
+            ?>
+            
           </select>
         </div>
 
         <!-- To Where -->
         <div class=" field mt-3 ">
-          <select class="form-select text-center selection-field" aria-label="Default select example" name="towhere">
-            <option selected>Where To</option>
-            <option value="Gulshan">Gulshan</option>
-            <option value="Dhanmondi">Dhanmondi</option>
-            <option value="Lalmatia">Lalmatia</option>
+          <select id="to" class="form-select text-center selection-field" aria-label="Default select example" name="towhere" onchange="checkLocations()" required>
+            <option selected disabled>Where To</option>
+
+
+              <?php
+            $all_locs = $conn->query($location_value_fetch);
+            if ($all_locs->num_rows > 0) {
+                while ($row2 = $all_locs->fetch_assoc()) {
+                    $temp= "<option value=\"".$row2["area_locations"]."\"".">".$row2["area_locations"]."</option>";
+                    echo $temp;
+                }       
+            
+            } else {
+                echo "<option value=\""."NoData"."\"".">"."No data"."</option>";
+            }
+            ?>
           </select>
         </div>
+        
+        <!-- Error message for same location -->
+         <p id="error" class="text-center text-danger"></p>
 
-        <!-- Time -->
+        <!-- Time & Date -->
         <div class=" field text-center mt-3 ">
           <label for="starting time">Starting Time</label>
           <input
@@ -110,14 +135,14 @@ session_start();
             id="floatingInput"
             placeholder="Time"
             name="time"
-            placeholder="Starting Time"  
+            placeholder="Starting Time"  required
           />
         </div>
  
          <!-- Vehicle Type Selection -->
     <div class="mt-3 mb-3 field">
-      <select class="form-select selection-field text-center" id="vehicleType" name="mode_commute" onchange="toggleInputs()">
-        <option value="">Select Vehicle Type</option>
+      <select class="form-select selection-field text-center" id="vehicleType" name="mode_commute" required onchange="toggleInputs()">
+        <option  selected disabled>Select Vehicle Type</option>
         <option value="Private">Private</option>
         <option value="Public">Public</option>
       </select>
@@ -129,7 +154,7 @@ session_start();
        <!-- This is where vehicle select or Add button will be inserted -->
       <div id="vehicleOptionsContainer" class=" mt-3 text-center "></div>
       
-      <!-- Capacity field -->
+    
    
     </div>
 
@@ -138,23 +163,23 @@ session_start();
        
     <div class=" field mt-3 text-center">
       <label for="public vehicle form-label">Select Vehicle</label>
-          <select class="form-select text-center selection-field mb-3" aria-label="Default select example" name="vehicle">
-            
-            <option value="1">Bus</option>
-            <option value="2">CNG</option>
-            <option value="3">UBER</option>
+          <select class="form-select text-center selection-field mb-3" aria-label="Default select example" name="vehicle_info">
+            <option selected disabled>Select a Vehicle Type</option>
+            <option value="Bus">Bus</option>
+            <option value="CNG">CNG</option>
+            <option value="Uber">UBER</option>
           </select>
         </div>
       <div class=" field mb-3">
       
-        <input type="number" class="form-control selection-field text-center" id="routeName" placeholder="Maxium Capacity" name="capacity">
+        <input type="number" class="form-control selection-field text-center" id="routeName" placeholder="Maxium Capacity" max="6" min="1" name="capacity">
       </div>
     </div>
 
     <!-- fare -->
     <div class=" field mb-3 text-center">
         
-        <input type="text" class="form-control selection-field text-center"  placeholder="Fare Amount in BDT" name="fare">
+        <input type="text" class="form-control selection-field text-center"  placeholder="Fare Amount in BDT" name="fare" required>
       </div>
     
       <!-- Meet up location -->
@@ -162,16 +187,6 @@ session_start();
         
         <input type="text" class="form-control selection-field text-center"  placeholder="Meet-Up Location(In-Short)" name="Meet_up_location">
       </div>
-
-      <!-- repeatition  -->
-      <!-- <div class=" field mb-3 text-center">
-        
-        <select class="form-select text-center selection-field mb-3" aria-label="Default select example" name="Recurring_Trip">
-          <option selected >Recurring of this Trip</option>
-            <option value="1">NO</option>
-            <option value="2">YES</option>    
-          </select>
-      </div> -->
 
     <!-- Submit button -->
          <div class="d-flex flex-row justify-content-center mt-3">
@@ -229,6 +244,21 @@ function setCapacity() {
     document.getElementById("capacity").value = capacity;
   } else {
     document.getElementById("capacity").value = "";
+  }
+}
+</script>
+<script>
+function checkLocations() {
+  var from = document.getElementById("from");
+  var to = document.getElementById("to");
+  var error = document.getElementById("error");
+
+  if (from.value === to.value && from.value !== "") {
+    error.innerText = "Both locations cannot be the same.";
+    to.setCustomValidity("Cannot be the same as 'Where From'");
+  } else {
+    error.innerText = "";
+    to.setCustomValidity("");
   }
 }
 </script>
