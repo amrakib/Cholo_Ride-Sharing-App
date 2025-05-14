@@ -25,30 +25,17 @@ include "../backend/db_connection.php";
     $result2=mysqli_query($conn, $updateQuery);
 
     if ($count1 > 0) {
-
-        $updateQuery = "UPDATE User SET UserStatus = 'Available' WHERE Student_ID = ?";
-        $stmt = mysqli_prepare($conn, $updateQuery);
-
-        if ($stmt) {
-
-            mysqli_stmt_bind_param($stmt, "s", $studentID); 
-
-
-            for ($i = 0; $i < $count1; $i++) {
-                $studentID = $data2[$i]["Student_ID"];
-                mysqli_stmt_execute($stmt);
-
-                if (mysqli_stmt_errno($stmt)) {
-                    echo "Error updating Student ID: " . $studentID . " - " . mysqli_stmt_error($stmt) . "<br>";
-                }
-            }
-
-            mysqli_stmt_close($stmt);
-        } else {
-            echo "Error preparing statement: " . mysqli_error($conn) . "<br>";
+        for ($i = 0; $i < $count1; $i++)
+        {
+            $updateQuery = "UPDATE User SET UserStatus = 'Available' WHERE Student_ID=\"".$data2[$i]["Student_ID"]."\"";
+            $conditionquery="UPDATE User SET Joined='False' WHERE Student_ID=\"".$data2[$i]["Student_ID"]."\"";
+            $result3=mysqli_query($conn, $conditionquery);
+            $result4=mysqli_query($conn, $updateQuery);
         }
     }
     $conditionquery="UPDATE User SET Created='False' WHERE Student_ID=\"".$_SESSION["User_ID"]."\"";
+    $result3=mysqli_query($conn, $conditionquery);
+    $conditionquery="UPDATE User SET Joined='False' WHERE Student_ID=\"".$_SESSION["User_ID"]."\"";
     $result3=mysqli_query($conn, $conditionquery);
     // header("location : ../backend/landing_page.php");
 

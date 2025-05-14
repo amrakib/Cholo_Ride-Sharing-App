@@ -9,6 +9,10 @@ session_start();
 $location_value_fetch = "SELECT * FROM Locations";
 $all_locs = $conn->query($location_value_fetch);
 
+
+$UserInfo="SELECT * FROM User where Student_ID=\"".$_SESSION["User_ID"]."\"";
+$Ufetched_data=mysqli_query($conn, $UserInfo);
+$UserData = $Ufetched_data->fetch_all(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html>
@@ -190,12 +194,18 @@ $all_locs = $conn->query($location_value_fetch);
 
     <!-- Submit button -->
          <div class="d-flex flex-row justify-content-center mt-3">
-         <button type="submit" class="btn btn-outline-success">Post Trip
-
+         <button id="cap" type="submit" class="btn btn-outline-success">Post Trip
          </button>
+<?php if ($UserData[0]["Created"]!="False" | $UserData[0]["Joined"]!="False") { ?>
+         <script>
+          const myButton = document.getElementById('cap');
+          myButton.disabled = true;
+         </script>
+         Cannot Create Trip! You are Part of Another Trip
+<?php }?>   
         </div>
-        
       </form>
+
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
