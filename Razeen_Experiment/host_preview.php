@@ -65,10 +65,11 @@ $UserData = $Ufetched_data->fetch_all(MYSQLI_ASSOC);
         </nav>
         </div>
 <?php
-$TripInfoQuery="SELECT* FROM Trips AS T INNER JOIN User AS U ON T.Student_ID=U.Student_ID where T.Trip_ID=\"".$_POST["trip_choice"]."\"";
+$TripInfoQuery="SELECT* FROM Trips AS T INNER JOIN User AS U ON T.Student_ID=U.Student_ID where T.Trip_ID=\"".$_SESSION["Trip_Create_Flag"]."\"";
 $fetched_data=mysqli_query($conn, $TripInfoQuery);
 $count=mysqli_num_rows( $fetched_data );
 $data = $fetched_data->fetch_all(MYSQLI_ASSOC);
+
 ?>
 
     <div class="container mt-5 ">
@@ -87,7 +88,7 @@ $data = $fetched_data->fetch_all(MYSQLI_ASSOC);
             </div>
     <div class="col bg-light rounded-3 shadow-sm p-4 m-2">
 <?php
-$TripJoinerQuery="SELECT * FROM Trip_Joiners AS T INNER JOIN User AS U ON T.Student_ID=U.Student_ID where Trip_ID=\"".$_POST["trip_choice"]."\"";
+$TripJoinerQuery="SELECT * FROM Trip_Joiners AS T INNER JOIN User AS U ON T.Student_ID=U.Student_ID where Trip_ID=\"".$_SESSION["Trip_Create_Flag"]."\"";
 $fetched_data1=mysqli_query($conn, $TripJoinerQuery);
 $count1=mysqli_num_rows( $fetched_data1 );
 $data2 = $fetched_data1->fetch_all(MYSQLI_ASSOC);
@@ -98,7 +99,7 @@ $thisTripFlag=False;
 <?php 
 if ($count1==0)
 {
- echo "<p>No One has joined the Trip</p>";
+ echo "<p>No One has joined Your Trip</p>";
 }
 else
 {     
@@ -117,42 +118,21 @@ else
     
   </div>
 </div>
-<form action="joining_processing.php" method="POST">
+
+<?php if ($leaveableFlag==True) { ?>
+        <form action="leave_processing.php" method="POST">
 <?php
-    echo "<input type=\"hidden\" name=\"Trip_ID\" value=\"".$_POST["trip_choice"]."\">";
-    echo "<input type=\"hidden\" name=\"Leader_ID\" value=\"".$data[0]["Student_ID"]."\">";
+        echo "<input type=\"hidden\" name=\"Trip_ID\" value=\"".$_SESSION["Trip_Create_Flag"]."\">";
+        echo "<input type=\"hidden\" name=\"Leader_ID\" value=\"".$data[0]["Student_ID"]."\">";
 ?>
-<div class="d-flex d-flex justify-content-center  flex-row mt-3 ">
-<?php if ($data[0]["Used_capacity"]==$data[0]["Capacity"]) { ?>
-      <button type="Submit" id="myButton" class="btn btn-outline-danger ">No Space Available</button>
-      <script>
-      const myButton = document.getElementById('myButton');
-      myButton.disabled = true;
-      </script>
+        <div class="d-flex d-flex justify-content-center  flex-row mt-3 ">
+        <button type="Submit" id="myButton" class="btn btn-outline-danger ">Leave Trip</button>
+        </a>
+        </div>
+        </form>
 
-<?php } else if  ($UserData[0]["UserStatus"]=="Rider") {?>
-      <button type="Submit" id="myButton" class="btn btn-outline-danger ">You Have a Trip Created</button>
-      <script>
-      const myButton = document.getElementById('myButton');
-      myButton.disabled = true;
-      </script>
-<?php } else if  ($thisTripFlag==True) {?>
-      <button type="Submit" id="myButton" class="btn btn-outline-danger ">You Are Already in this Trip</button>
-      <script>
-      const myButton = document.getElementById('myButton');
-      myButton.disabled = true;
-      </script>
-<?php } else if  ($UserData[0]["UserStatus"]=="Passenger") {?>
-      <button type="Submit" id="myButton" class="btn btn-outline-danger ">You Are Part of Another Trip</button>
-      <script>
-      const myButton = document.getElementById('myButton');
-      myButton.disabled = true;
-      </script>
-<?php } else {?>
+<?php } ?>
 
-      <button type="Submit" id="myButton" class="btn btn-outline-danger ">Join Trip</button>
-
-<?php }?>
       
 
 </a>
