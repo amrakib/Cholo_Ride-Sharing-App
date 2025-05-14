@@ -41,7 +41,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['selected_vehicle'])) {
 }
   </style>
 </head>
-<body class="container mt-5">
+<body >
+    <!-- navbar -->
+     <div class=" ps-3 pe-3 mb-5">
+     <nav class="navbar navbar-expand-lg">
+          <a class="navbar-brand fw-bolder fs-3" href="../backend/landing_page.php" style="color:white; margin-left: 4rem;">CHOLO</a>
+          <button
+            class="navbar-toggler bg-light"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon rounded"></span>
+          </button>
+          <div class="collapse navbar-collapse me-3" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-lg-0 ms-auto  ">
+              <li class="nav-item pe-4 fs-5 fw-bold ">
+                <a class="nav-link " aria-current="page" href="../backend/landing_page.php">Home</a>
+              </li>
+              <li class="nav-item pe-4 fs-5 fw-bold">
+                <a class="nav-link " href="../backend/logout.php">Log Out</a>
+              </li>
+              <li class="nav-item pe-4 fs-5 fw-bold">
+                <a class="nav-link " href="../backend/profile.php">Profile</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        </div>
 <div class="bg-light shadow w-75 m-auto selection-field p-4">
     <h2 class="text-center mt-3">Edit Your Vehicle</h2>
 
