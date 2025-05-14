@@ -196,14 +196,17 @@ $UserData = $Ufetched_data->fetch_all(MYSQLI_ASSOC);
          <div class="d-flex flex-row justify-content-center mt-3">
          <button id="cap" type="submit" class="btn btn-outline-success">Post Trip
          </button>
+         </div>
+         <div class="text-center mt-3 ">
 <?php if ($UserData[0]["Created"]!="False" | $UserData[0]["Joined"]!="False") { ?>
          <script>
           const myButton = document.getElementById('cap');
           myButton.disabled = true;
          </script>
          Cannot Create Trip! You are Part of Another Trip
-<?php }?>   
-        </div>
+<?php }?>  
+</div> 
+        
       </form>
 
     </div>
