@@ -37,6 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
         if ($stmt->execute()) {
             $_SESSION['success'] = "Trip Created Successfully!";
+            $update="UPDATE User SET Created='".$conn->insert_id."'  WHERE Student_ID=\"".$_SESSION["User_ID"]."\"";
+            $result=mysqli_query($conn, $update);
             header("Location: post_trip_success.php"); // Redirect to success page
             exit();
 
