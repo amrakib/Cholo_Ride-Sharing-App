@@ -1,26 +1,11 @@
 <?php
 session_start();
- // Start the session to store temporary success message
- if (!isset($_SESSION["User_ID"])) {
+include 'connection.php';
+if (!isset($_SESSION["User_ID"])) {
     header("Location: ../backend/index.php");
     exit();
   }
 $student_id = $_SESSION["User_ID"];
-// Step 1: Connect to Database
-$servername = "localhost";
-$username = "root";
-$password = ""; // XAMPP default password
-$dbname = "database_schema"; // Change this to your DB name
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Enable Exception Mode
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
 
 // Step 2: Handle Form Submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -36,8 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssssis", $vehicle_type, $model_name, $vehicle_number, $license_number, $capacity, $owner_id);
-
-
 
     try {
         if ($stmt->execute()) {
