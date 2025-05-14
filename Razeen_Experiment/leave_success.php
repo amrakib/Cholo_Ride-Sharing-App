@@ -5,7 +5,7 @@ session_start();
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Trip Joined</title>
+  <title>Leaveing Trip</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -26,7 +26,7 @@ session_start();
     </div>
 
     <div class="text-center mt-5">
-      <h3 class="text-success">✅Joined Trip Success</h3>
+      <h3 class="text-success">✅Left Trip Success</h3>
       <a href="../backend/landing_page.php" >
         <button type="button"class="btn btn btn-outline-success mt-4">Go Back Home</button></a>
     </div>

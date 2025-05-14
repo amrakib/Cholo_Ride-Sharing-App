@@ -2,9 +2,34 @@
 include 'db_connection.php';
 session_start();
 
+
+
+
 if (!isset($_SESSION['User_ID'])){
     header("Location: login.php");
     exit();
+}
+
+$TripUserQuery="SELECT * FROM User WHERE Student_ID=\"".$_SESSION["User_ID"]."\"";
+$fetched_data1=mysqli_query($conn, $TripUserQuery);
+$count1=mysqli_num_rows( $fetched_data1 );
+$data2 = $fetched_data1->fetch_all(MYSQLI_ASSOC);
+
+$passengerFlag=False;
+$riderFlag=False;
+$availableFlag=False;
+
+if ($data2[0]["UserStatus"]=="Passenger")
+{
+    $passengerFlag=True;
+}
+else if ($data2[0]["UserStatus"]=="Rider")
+{
+    $riderFlag=True;
+}
+else if ($data2[0]["UserStatus"]=="Available")
+{
+    $availableFlag=True;
 }
 
 $user_id = intval($_SESSION['User_ID']);
@@ -203,13 +228,23 @@ $stmt->close();
             </button>
           </a>
         </div>
+<?php if ($riderFlag==True) { ?>
         <div class="col-6 col-md-3">
-          <a href="#"> <!-- Razeen will Edit the link later -->
+          <a href="../Razeen_Experiment/host_preview.php"> <!-- Razeen will Edit the link later -->
             <button type="button" class="btn btn-light btn-lg border-dark w-100">
-              <i class="fa-solid fa-circle-info fa-lg"></i> Dummy
+              <i class="fa-solid fa-circle-info fa-lg"></i> Your Trip Info
             </button>
           </a>
         </div>
+<?php } else if ($passengerFlag==True) { ?>
+  <div class="col-6 col-md-3">
+          <a href="../Razeen_Experiment/joiner_preview.php"> <!-- Razeen will Edit the link later -->
+            <button type="button" class="btn btn-light btn-lg border-dark w-100">
+              <i class="fa-solid fa-circle-info fa-lg"></i> Joined Trip Info
+            </button>
+          </a>
+        </div>
+<?php } ?>
 
         <div class="col-6 col-md-3">
           <a href="../frontend/vehicle_list.php">

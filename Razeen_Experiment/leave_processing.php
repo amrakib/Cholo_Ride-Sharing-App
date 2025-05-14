@@ -16,17 +16,17 @@ if (isset($_POST["Trip_ID"]))
     $count1=mysqli_num_rows( $fetched_data1 );
     $data2 = $fetched_data1->fetch_all(MYSQLI_ASSOC);
 
-    
-    $insert_query="INSERT INTO Trip_Joiners VALUES (".$_POST["Leader_ID"].",".$_SESSION["User_ID"].",".$_POST["Trip_ID"].")";
-    $result=mysqli_query($conn, $insert_query);
 
-    $updateQuery="UPDATE User SET UserStatus='Passenger'  WHERE Student_ID=\"".$_SESSION["User_ID"]."\"";
+    $delete_query="DELETE FROM Trip_Joiners WHERE Student_ID='".$_SESSION["User_ID"]."' and Trip_Leader_ID='".$_POST["Leader_ID"]."' and Trip_ID='".$_POST["Trip_ID"]."'";
+    $result=mysqli_query($conn, $delete_query);
+
+    $updateQuery="UPDATE User SET UserStatus='Available'  WHERE Student_ID=\"".$_SESSION["User_ID"]."\"";
     $result2=mysqli_query($conn, $updateQuery);
-    $updateQuery2="UPDATE Trips SET Used_capacity= Used_capacity+1  WHERE Trip_ID=\"".$_POST["Trip_ID"]."\"";
+
+    $updateQuery2="UPDATE Trips SET Used_capacity= Used_capacity-1  WHERE Trip_ID=\"".$_POST["Trip_ID"]."\"";
     $result3=mysqli_query($conn, $updateQuery2);
-    $_SESSION["Joined_Trip_ID"]=$_POST["Trip_ID"];
-    header('location: join_success.php');
-    
+    header('location: leave_success.php');
+    unset($_SESSION["Joined_Trip_ID"]);
 }
 ?>
 
