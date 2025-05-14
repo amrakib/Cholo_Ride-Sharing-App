@@ -22,13 +22,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($check_result->num_rows > 0) {
         $error = "Admin with this email already exists!";
-    } else {
+    } 
+    
+    else {
         $insert_query = "INSERT INTO Admin (Admin_Key, Gsuite_Email, Password) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($insert_query);
         $stmt->bind_param("sss", $admin_key, $email, $password);
         if ($stmt->execute()) {
             $success = "Admin added successfully!";
-        } else {
+        } 
+        
+        else {
             $error = "Failed to add admin.";
         }
     }
