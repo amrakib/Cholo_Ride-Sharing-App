@@ -155,7 +155,7 @@ else
 
 
 <?php } else if ($canEnd=True) {?>
-
+        <form action="trip_finish_processing.php" method="POST">
 <?php
         echo "<input type=\"hidden\" name=\"Trip_ID\" value=\"".$UserData[0]["Created"]."\">";
         echo "<input type=\"hidden\" name=\"Leader_ID\" value=\"".$data[0]["Student_ID"]."\">";

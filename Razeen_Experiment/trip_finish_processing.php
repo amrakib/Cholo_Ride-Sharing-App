@@ -21,7 +21,7 @@ include "../backend/db_connection.php";
     $updateQueryU="UPDATE User SET UserStatus='Available'  WHERE Student_ID=\"".$_SESSION["User_ID"]."\"";
     $result2=mysqli_query($conn, $updateQueryU);
 
-    $updateQuery="UPDATE Trips SET trip_status='Cancelled'  WHERE Trip_ID=\"".$UserData[0]["Created"]."\"";
+    $updateQuery="UPDATE Trips SET trip_status='Completed'  WHERE Trip_ID=\"".$UserData[0]["Created"]."\"";
     $result2=mysqli_query($conn, $updateQuery);
 
     if ($count1 > 0) {
@@ -79,7 +79,7 @@ include "../backend/db_connection.php";
     </div>
 
     <div class="text-center mt-5">
-      <h3 class="text-success">✅Trip Cancelled Successful</h3>
+      <h3 class="text-success">✅Trip Has Finished Successfully</h3>
       <a href="../backend/landing_page.php" >
         <button type="button"class="btn btn btn-outline-success mt-4">Go Back Home</button></a>
     </div>

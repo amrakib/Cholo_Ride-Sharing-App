@@ -1,30 +1,6 @@
 <?php
 session_start();
-include "../backend/db_connection.php";
-
-    $UserInfo="SELECT * FROM User where Student_ID=\"".$_SESSION["User_ID"]."\"";
-    $Ufetched_data=mysqli_query($conn, $UserInfo);
-    $UserData = $Ufetched_data->fetch_all(MYSQLI_ASSOC);
-
-    $updateQuery="UPDATE Trips SET trip_status='Pending'  WHERE Trip_ID=\"".$UserData[0]["Created"]."\"";
-    $result2=mysqli_query($conn, $updateQuery);
-
-    $TripJoinerQuery="SELECT * FROM Trip_Joiners AS T INNER JOIN User AS U ON T.Student_ID=U.Student_ID where Trip_ID=\"".$UserData[0]["Created"]."\"";
-    $fetched_data1=mysqli_query($conn, $TripJoinerQuery);
-    $count1=mysqli_num_rows( $fetched_data1 );
-    $data2 = $fetched_data1->fetch_all(MYSQLI_ASSOC);
-    echo $count1;
-
-    $TripLeaderQuery="SELECT * FROM Trips where Trip_ID=\"".$UserData[0]["Created"]."\"";
-    $fetched_data2=mysqli_query($conn, $TripLeaderQuery);
-    $count5=mysqli_num_rows( $fetched_data2 );
-    $data5 = $fetched_data2->fetch_all(MYSQLI_ASSOC);
-
-
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,6 +48,4 @@ include "../backend/db_connection.php";
 
 </body>
 </html>
-
-
 
