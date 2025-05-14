@@ -150,47 +150,72 @@ CREATE TABLE Trips (
 )AUTO_INCREMENT=10001;
 
 -- >>>>>>>>>>>>>>>>>>>>>>
+-- Trip experiment values (Not needed for updated version)
+-- -- >>>>>>>>>>>>>>>>>>>>>>
+-- INSERT INTO Trips (
+--     Student_ID, where_loc, Capacity, Time, Date,
+--     Fare, Meet_up_location, Mode_of_Commute,
+--     trip_status, to_loc, Used_capacity, Vehicle_Info
+-- ) VALUES
+
+-- -- ("23101137","Dhanmondi",5,"12:30","2018-05-02",50.55,"Abahani","Public","Available","Gulshan",5),
+-- ("23102352","Gulshan",5,"16:35","2022-05-03",24.55,"Abahani","Public","Available","Lalmatia",1),
+-- ("23102621","Mohakhali",5,"23:30","2025-09-02",61.55,"Abahani","Public","Available","Uttara",3),
+-- ("23101126","Uttara",5,"07:30","2015-07-01",26.55,"Abahani","Public","Available","Mirpur 1",1),
+-- ("23109200","Mirpur 1",5,"12:30","2002-01-20",88.55,"Abahani","Public","Available","Badda",3);
+
+-- >>>>>>>>>>>>>>>>>>>>>>
 -- Trip experiment values
 -- >>>>>>>>>>>>>>>>>>>>>>
 INSERT INTO Trips (
     Student_ID, where_loc, Capacity, Time, Date,
     Fare, Meet_up_location, Mode_of_Commute,
-    trip_status, to_loc, Used_capacity
+    trip_status, to_loc, Used_capacity, Vehicle_Info
 ) VALUES
+("23102352", "Gulshan", 5, "16:35", "2022-05-03", 24.55, "Abahani", "Public", "Available", "Lalmatia", 1, "Bus"),
+("23102621", "Mohakhali", 5, "23:30", "2025-09-02", 61.55, "Abahani", "Public", "Available", "Uttara", 3, "CNG"),
+("23101126", "Uttara", 5, "07:30", "2015-07-01", 26.55, "Abahani", "Public", "Available", "Mirpur 1", 1, "Bus"),
+("23109200", "Mirpur 1", 5, "12:30", "2002-01-20", 88.55, "Abahani", "Public", "Available", "Badda", 3, "Uber");
 
--- ("23101137","Dhanmondi",5,"12:30","2018-05-02",50.55,"Abahani","Public","Available","Gulshan",5),
-("23102352","Gulshan",5,"16:35","2022-05-03",24.55,"Abahani","Public","Available","Lalmatia",1),
-("23102621","Mohakhali",5,"23:30","2025-09-02",61.55,"Abahani","Public","Available","Uttara",3),
-("23101126","Uttara",5,"07:30","2015-07-01",26.55,"Abahani","Public","Available","Mirpur 1",1),
-("23109200","Mirpur 1",5,"12:30","2002-01-20",88.55,"Abahani","Public","Available","Badda",3);
-
-INSERT INTO Trips (Student_ID, where_loc, Capacity, Time, Date, Fare, Meet_up_location, Mode_of_Commute, trip_status, to_loc, Used_capacity)
-VALUES 
-("23101137", "Dhanmondi", 4, "12:00", "2025-05-01", 50.00, "Dhanmondi 27", "Public", "Completed", "Gulshan", 3); -- Trip_ID = LAST_INSERT_ID() = @TripID1
+-- Completed public trip
+INSERT INTO Trips (
+    Student_ID, where_loc, Capacity, Time, Date, Fare,
+    Meet_up_location, Mode_of_Commute, trip_status,
+    to_loc, Used_capacity, Vehicle_Info
+) VALUES
+('23101137', 'Dhanmondi', 4, '12:00:00', '2025-05-01', 50.00, 'Dhanmondi 27', 'Public', 'Completed', 'Gulshan', 3, 'Bus');
 
 SET @TripID1 = LAST_INSERT_ID();
 
-INSERT INTO Trips (Student_ID, where_loc, Capacity, Time, Date, Fare, Meet_up_location, Mode_of_Commute, trip_status, to_loc, Used_capacity)
-VALUES 
-("23101137", "Mirpur 1", 4, "14:30", "2025-05-05", 60.00, "Mirpur 10", "Bike", "Available", "Badda", 2); -- Trip_ID = LAST_INSERT_ID() = @TripID2
+-- Private trip by Imtiaz using his private vehicle (not listed, assuming public commute again)
+INSERT INTO Trips (
+    Student_ID, where_loc, Capacity, Time, Date, Fare,
+    Meet_up_location, Mode_of_Commute, trip_status,
+    to_loc, Used_capacity, Vehicle_Info
+) VALUES
+('23101137', 'Mirpur 1', 4, '14:30:00', '2025-05-05', 60.00, 'Mirpur 10', 'Private', 'Available', 'Badda', 2, 'Fzs v3'); -- Imtiaz owns the Fzs v3 (vehicle number: 618968)
 
 SET @TripID2 = LAST_INSERT_ID();
 
--- Ezio (23102352) created a trip
-INSERT INTO Trips (Student_ID, where_loc, Capacity, Time, Date, Fare, Meet_up_location, Mode_of_Commute, trip_status, to_loc, Used_capacity)
-VALUES 
-("23102352", "Mohakhali", 3, "10:15", "2025-05-03", 40.00, "Mohakhali Bus Stand", "Public", "Completed", "Lalmatia", 2); -- @TripID3
+-- Ezio's trip (public)
+INSERT INTO Trips (
+    Student_ID, where_loc, Capacity, Time, Date, Fare,
+    Meet_up_location, Mode_of_Commute, trip_status,
+    to_loc, Used_capacity, Vehicle_Info
+) VALUES
+('23102352', 'Mohakhali', 3, '10:15:00', '2025-05-03', 40.00, 'Mohakhali Bus Stand', 'Public', 'Completed', 'Lalmatia', 2, 'Bus');
 
 SET @TripID3 = LAST_INSERT_ID();
 
--- Geralt (23102621) created a trip
-INSERT INTO Trips (Student_ID, where_loc, Capacity, Time, Date, Fare, Meet_up_location, Mode_of_Commute, trip_status, to_loc, Used_capacity)
-VALUES 
-("23102621", "Banani", 2, "08:45", "2025-05-04", 35.00, "Banani 11", "Bike", "Cancelled", "Uttara", 1); -- @TripID4
+-- Geralt's trip (private)
+INSERT INTO Trips (
+    Student_ID, where_loc, Capacity, Time, Date, Fare,
+    Meet_up_location, Mode_of_Commute, trip_status,
+    to_loc, Used_capacity, Vehicle_Info
+) VALUES
+('23102621', 'Banani', 2, '08:45:00', '2025-05-04', 35.00, 'Banani 11', 'Private', 'Cancelled', 'Uttara', 1, 'Fzs v3'); -- assuming all private trips use 'Fzs v3'
 
 SET @TripID4 = LAST_INSERT_ID();
-
-
 
 
 -- ======================
@@ -211,18 +236,20 @@ CREATE TABLE Trip_Joiners (
 -- ======================
 
 -- Imtiaz joins Ezio's trip
--- INSERT INTO Trip_Joiners (Student_ID, Trip_ID)
--- VALUES ('23101137', @TripID3);
+INSERT INTO Trip_Joiners (Trip_Leader_ID, Student_ID, Trip_ID)
+VALUES ('23102352', '23101137', @TripID3);
 
 -- Imtiaz joins Geralt’s trip
--- INSERT INTO Trip_Joiners (Student_ID, Trip_ID)
--- VALUES ('23101137', @TripID4);
+INSERT INTO Trip_Joiners (Trip_Leader_ID, Student_ID, Trip_ID)
+VALUES ('23102621', '23101137', @TripID4);
+
 
 -- Ezio and Geralt join Imtiaz’s first trip
--- INSERT INTO Trip_Joiners (Student_ID, Trip_ID)
--- VALUES 
--- ('23102352', @TripID1),
--- ('23102621', @TripID1);
+INSERT INTO Trip_Joiners (Trip_Leader_ID, Student_ID, Trip_ID)
+VALUES 
+('23101137', '23102352', @TripID1),
+('23101137', '23102621', @TripID1);
+
 
 
 -- ======================
