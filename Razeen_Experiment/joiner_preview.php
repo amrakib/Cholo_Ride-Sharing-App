@@ -65,7 +65,7 @@ $UserData = $Ufetched_data->fetch_all(MYSQLI_ASSOC);
         </nav>
         </div>
 <?php
-$TripInfoQuery="SELECT* FROM Trips AS T INNER JOIN User AS U ON T.Student_ID=U.Student_ID where T.Trip_ID=\"".$_SESSION["Joined_Trip_ID"]."\"";
+$TripInfoQuery="SELECT* FROM Trips AS T INNER JOIN User AS U ON T.Student_ID=U.Student_ID where T.Trip_ID=\"".$UserData[0]["Joined"]."\"";
 $fetched_data=mysqli_query($conn, $TripInfoQuery);
 $count=mysqli_num_rows( $fetched_data );
 $data = $fetched_data->fetch_all(MYSQLI_ASSOC);
@@ -103,7 +103,7 @@ else if ($data[0]["trip_status"]=="Finished")
             </div>
     <div class="col bg-light rounded-3 shadow-sm p-4 m-2">
 <?php
-$TripJoinerQuery="SELECT * FROM Trip_Joiners AS T INNER JOIN User AS U ON T.Student_ID=U.Student_ID where Trip_ID=\"".$_SESSION["Joined_Trip_ID"]."\"";
+$TripJoinerQuery="SELECT * FROM Trip_Joiners AS T INNER JOIN User AS U ON T.Student_ID=U.Student_ID where Trip_ID=\"".$UserData[0]["Joined"]."\"";
 $fetched_data1=mysqli_query($conn, $TripJoinerQuery);
 $count1=mysqli_num_rows( $fetched_data1 );
 $data2 = $fetched_data1->fetch_all(MYSQLI_ASSOC);
@@ -137,7 +137,7 @@ else
 <?php if ($leaveableFlag==True) { ?>
         <form action="leave_processing.php" method="POST">
 <?php
-        echo "<input type=\"hidden\" name=\"Trip_ID\" value=\"".$_SESSION["Joined_Trip_ID"]."\">";
+        echo "<input type=\"hidden\" name=\"Trip_ID\" value=\"".$UserData[0]["Joined"]."\">";
         echo "<input type=\"hidden\" name=\"Leader_ID\" value=\"".$data[0]["Student_ID"]."\">";
 ?>
         <div class="d-flex d-flex justify-content-center  flex-row mt-3 ">
@@ -149,7 +149,7 @@ else
 <?php } else if  ($notleaveableFlag==True) {?>
         <form action="#" method="POST">
 <?php
-        echo "<input type=\"hidden\" name=\"Trip_ID\" value=\"".$_SESSION["Joined_Trip_ID"]."\">";
+        echo "<input type=\"hidden\" name=\"Trip_ID\" value=\"".$UserData[0]["Joined"]."\">";
         echo "<input type=\"hidden\" name=\"Leader_ID\" value=\"".$data[0]["Student_ID"]."\">";
 ?>
         <div class="d-flex d-flex justify-content-center  flex-row mt-3 ">
@@ -164,7 +164,7 @@ else
 <?php } else if  ($finishedFlag==True) {?>
         <form action="#" method="POST">
         <?php
-        echo "<input type=\"hidden\" name=\"Trip_ID\" value=\"".$_SESSION["Joined_Trip_ID"]."\">";
+        echo "<input type=\"hidden\" name=\"Trip_ID\" value=\"".$UserData[0]["Joined"]."\">";
         echo "<input type=\"hidden\" name=\"Leader_ID\" value=\"".$data[0]["Student_ID"]."\">";
 ?>
         <div class="d-flex d-flex justify-content-center  flex-row mt-3 ">

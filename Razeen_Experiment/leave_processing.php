@@ -25,8 +25,10 @@ if (isset($_POST["Trip_ID"]))
 
     $updateQuery2="UPDATE Trips SET Used_capacity= Used_capacity-1  WHERE Trip_ID=\"".$_POST["Trip_ID"]."\"";
     $result3=mysqli_query($conn, $updateQuery2);
+    $conditionquery="UPDATE User SET Joined='False' WHERE Student_ID=\"".$_SESSION["User_ID"]."\"";
+    $result3=mysqli_query($conn, $conditionquery);
     header('location: leave_success.php');
-    unset($_SESSION["Joined_Trip_ID"]);
+
 }
 ?>
 

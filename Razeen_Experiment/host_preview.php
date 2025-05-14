@@ -65,10 +65,22 @@ $UserData = $Ufetched_data->fetch_all(MYSQLI_ASSOC);
         </nav>
         </div>
 <?php
-$TripInfoQuery="SELECT* FROM Trips AS T INNER JOIN User AS U ON T.Student_ID=U.Student_ID where T.Trip_ID=\"".$_SESSION["Trip_Create_Flag"]."\"";
+$TripInfoQuery="SELECT* FROM Trips AS T INNER JOIN User AS U ON T.Student_ID=U.Student_ID where T.Trip_ID=\"".$UserData[0]["Created"]."\"";
 $fetched_data=mysqli_query($conn, $TripInfoQuery);
 $count=mysqli_num_rows( $fetched_data );
 $data = $fetched_data->fetch_all(MYSQLI_ASSOC);
+
+$canStart=false;
+$canEnd=false;
+
+if ($data[0]["trip_status"]=="Available")
+{
+  $canStart=True;
+}
+else if ($data[0]["trip_status"]=="Pending")
+{
+  $canEnd=True;
+}
 
 ?>
 
@@ -88,7 +100,7 @@ $data = $fetched_data->fetch_all(MYSQLI_ASSOC);
             </div>
     <div class="col bg-light rounded-3 shadow-sm p-4 m-2">
 <?php
-$TripJoinerQuery="SELECT * FROM Trip_Joiners AS T INNER JOIN User AS U ON T.Student_ID=U.Student_ID where Trip_ID=\"".$_SESSION["Trip_Create_Flag"]."\"";
+$TripJoinerQuery="SELECT * FROM Trip_Joiners AS T INNER JOIN User AS U ON T.Student_ID=U.Student_ID where Trip_ID=\"".$UserData[0]["Created"]."\"";
 $fetched_data1=mysqli_query($conn, $TripJoinerQuery);
 $count1=mysqli_num_rows( $fetched_data1 );
 $data2 = $fetched_data1->fetch_all(MYSQLI_ASSOC);
@@ -119,25 +131,44 @@ else
   </div>
 </div>
 
-<?php if ($leaveableFlag==True) { ?>
-        <form action="leave_processing.php" method="POST">
+<?php if ($canStart==True) { ?>
+        <form action="start_trip_processing.php" method="POST">
 <?php
-        echo "<input type=\"hidden\" name=\"Trip_ID\" value=\"".$_SESSION["Trip_Create_Flag"]."\">";
+        echo "<input type=\"hidden\" name=\"Trip_ID\" value=\"".$UserData[0]["Created"]."\">";
         echo "<input type=\"hidden\" name=\"Leader_ID\" value=\"".$data[0]["Student_ID"]."\">";
 ?>
         <div class="d-flex d-flex justify-content-center  flex-row mt-3 ">
-        <button type="Submit" id="myButton" class="btn btn-outline-danger ">Leave Trip</button>
+        <button type="Submit" id="myButton" class="btn btn-outline-danger ">Start Trip</button>
+        </a>
+        </div>
+        </form>
+        <form action="cancel_trip_processing.php" method="POST">
+<?php
+        echo "<input type=\"hidden\" name=\"Trip_ID\" value=\"".$UserData[0]["Created"]."\">";
+        echo "<input type=\"hidden\" name=\"Leader_ID\" value=\"".$data[0]["Student_ID"]."\">";
+?>
+        <div class="d-flex d-flex justify-content-center  flex-row mt-3 ">
+        <button type="Submit" id="myButton" class="btn btn-outline-danger ">Cancel Trip</button>
         </a>
         </div>
         </form>
 
-<?php } ?>
 
-      
+<?php } else if ($canEnd=True) {?>
 
-</a>
-</div>
-</form>
+<?php
+        echo "<input type=\"hidden\" name=\"Trip_ID\" value=\"".$UserData[0]["Created"]."\">";
+        echo "<input type=\"hidden\" name=\"Leader_ID\" value=\"".$data[0]["Student_ID"]."\">";
+?>
+        <div class="d-flex d-flex justify-content-center  flex-row mt-3 ">
+        <button type="Submit" id="myButton" class="btn btn-outline-danger ">Finish Trip</button>
+        </a>
+        </div>
+        </form>      
+
+<?php }?>
+
+
         
             
     
