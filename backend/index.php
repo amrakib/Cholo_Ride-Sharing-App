@@ -44,7 +44,7 @@ session_start();
           type="email"
           id="email"
           name="email"
-          placeholder="abc@g.bracu.ac.bd"
+          placeholder="example@gmail.com"
           required
         />
       </div>
@@ -61,7 +61,7 @@ session_start();
       <input class="submit_button" type="submit" name="submit" value="Log In" />
 
       <div id="extra-links">
-        <a href="">Forget Password?</a>
+        <!-- <a href="">Forget Password?</a> -->
         <a href="registration.php" target="_blank">Create Account</a>
       </div>
     </form>

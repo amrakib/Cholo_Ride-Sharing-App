@@ -29,16 +29,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['selected_vehicle'])) {
     body {
   background-image: linear-gradient(220deg, #fbe4d6 0%, #8fd3f4);
   background-attachment: fixed;
+
+}
+.field {
+  margin: auto;
+  width: 60%;
+}
+.selection-field {
+  border-radius: 30px;
+  
 }
   </style>
 </head>
 <body class="container mt-5">
-    <h2 >Edit Your Vehicle</h2>
+<div class="bg-light shadow w-75 m-auto selection-field p-4">
+    <h2 class="text-center mt-3">Edit Your Vehicle</h2>
 
     <!-- Step 1: Select Vehicle -->
     <form method="POST" class="mb-4">
-        
-        <select name="selected_vehicle" class="form-select w-50 mt-3 mb-2" required>
+        <div class="field">
+        <select name="selected_vehicle" class="form-select  mt-3 mb-2 text-center selection-field" required>
             <option value="">Chose a Vehicle</option>
             <?php
             $sql = "SELECT Vehicle_Number FROM private_vehicle WHERE Owner_Id = ?";
@@ -52,10 +62,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['selected_vehicle'])) {
             }
             ?>
         </select>
-        <button type="submit" class="btn btn-outline-primary mt-2">Edit</button>
+        </div>
+        <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-outline-primary mt-2 me-3">Edit</button>
         <a href="vehicle_list.php" >
         <button type="button" class="btn btn-outline-danger mt-2">Back</button>
         </a>
+        </div>
     </form>
 
     <!-- Step 2: Show Edit Form -->
@@ -63,23 +76,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['selected_vehicle'])) {
         <form method="POST" action="update_vehicle.php">
             <input type="hidden" name="original_vehicle_number" value="<?= htmlspecialchars($vehicle['Vehicle_Number']) ?>">
 
-            <div class="mb-3">
-                <label>Vehicle Number</label>
-                <input type="text" name="vehicle_number" class="form-control w-50" value="<?= htmlspecialchars($vehicle['Vehicle_Number']) ?>" required>
+            <div class="mb-3 field text-center">
+                <label >Vehicle Number</label>
+                <input type="text" name="vehicle_number" class="form-control selection-field text-center" value="<?= htmlspecialchars($vehicle['Vehicle_Number']) ?>" required>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 field text-center">
                 <label>Model Name</label>
-                <input type="text" name="model_name" class="form-control w-50" value="<?= htmlspecialchars($vehicle['Model_Name']) ?>" required>
+                <input type="text" name="model_name" class="form-control selection-field text-center" value="<?= htmlspecialchars($vehicle['Model_Name']) ?>" required>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 field text-center">
                 <label>Capacity</label>
-                <input type="number" name="capacity" class="form-control w-50" value="<?= htmlspecialchars($vehicle['Capacity']) ?>" required>
+                <input type="number" name="capacity" class="form-control selection-field text-center" value="<?= htmlspecialchars($vehicle['Capacity']) ?>" required>
             </div>
+        <div class="d-flex justify-content-center">
 
-            <button type="submit" class="btn btn-outline-success">Save Changes</button>
+            <button type="submit" class="btn btn-outline-success mb-4">Save Changes</button>
+            </div>
         </form>
     <?php endif; ?>
+</div>
 </body>
 </html>
