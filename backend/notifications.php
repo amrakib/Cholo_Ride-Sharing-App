@@ -30,8 +30,45 @@ mysqli_query($conn, "UPDATE Notifications SET Status = 'Read' WHERE User_ID = $u
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+         body {
+  background-image: linear-gradient(220deg, #fbe4d6 0%, #8fd3f4);
+  background-attachment: fixed;
+
+}
+    </style>
 </head>
 <body class="bg-light">
+    <!-- navbar -->
+     <div class=" ps-3 pe-3 mb-5">
+     <nav class="navbar navbar-expand-lg">
+          <a class="navbar-brand fw-bolder fs-3" href="../backend/landing_page.php" style="color:white; margin-left: 4rem;">CHOLO</a>
+          <button
+            class="navbar-toggler bg-light"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon rounded"></span>
+          </button>
+          <div class="collapse navbar-collapse me-3" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-lg-0 ms-auto  ">
+              <li class="nav-item pe-4 fs-5 fw-bold ">
+                <a class="nav-link " aria-current="page" href="../backend/landing_page.php">Home</a>
+              </li>
+              <li class="nav-item pe-4 fs-5 fw-bold">
+                <a class="nav-link " href="../backend/logout.php">Log Out</a>
+              </li>
+              <li class="nav-item pe-4 fs-5 fw-bold">
+                <a class="nav-link " href="../backend/profile.php">Profile</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        </div>
 
 <div class="container my-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
